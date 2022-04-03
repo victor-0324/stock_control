@@ -6,13 +6,15 @@ from .user import User
 auth_app = Blueprint(
     'auth_app',__name__, 
     template_folder='template',
-    static_folder='static')
+    static_folder='static',)
 
-users = []
-users.append(User(id=1, username='Vitor', password='123'))
-users.append(User(id=2, username='vitor', password='123'))
-users.append(User(id=3, username='Thiago', password='1515'))
-users.append(User(id=4, username='thiago', password='1515'))
+users = [
+    User(id=1, username='Vitor', password='123'),
+    User(id=2, username='vitor', password='123'),
+    User(id=3, username='Thiago', password='1515'),
+    User(id=4, username='thiago', password='1515')
+    ]
+
 
 
 @auth_app.before_request
