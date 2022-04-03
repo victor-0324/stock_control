@@ -4,10 +4,9 @@ from flask import Blueprint, request, session, render_template, g, redirect, url
 from .user import User
 
 auth_app = Blueprint(
-    'auth_app',
-    __name__, 
-    template_folder='../../templates/',
-    static_folder='../../static/css')
+    'auth_app',__name__, 
+    template_folder='template',
+    static_folder='static')
 
 users = []
 users.append(User(id=1, username='Vitor', password='123'))
@@ -36,9 +35,9 @@ def login():
 
         if user and user.password == password:  
             session['user_id'] = user.id
-            return redirect(url_for('auth_app.index'))
+            return redirect(url_for('index'))
 
-        return redirect(url_for('auth_app.login'))
+        return redirect(url_for('login'))
     return render_template('login.html')  
 
 # Tela Iniciarl
@@ -47,5 +46,5 @@ def index():
     if not g.user:
         # abort(403)
 
-        return redirect(url_for('auth_app.login')) 
+        return redirect(url_for('login')) 
     return render_template('index.html')
