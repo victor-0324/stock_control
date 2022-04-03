@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexs.css') }}">
+
+    <title>Trocas de equipamentos</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="recebido">
+            <h2> Trocas de equipamentos </h2>
+            <form action="" enctype="multipart/form-data" method="POST">
+                <div class="primeironome">
+                    <label class="primeirolabel">Cliente recolhido o e quipamento</label>
+                    <input type="text" class="primeiro" name="user_inst">
+                </div>
+                <div class="segundonome">
+                    <label class="sobrenomelabel">Cliente  usando o e quipamento</label>
+                    <input type="text" class="sobrenome" name="user_ret">
+                </div>
+                <!-- <h3>Adicione a foto dos equipamentos</h3>
+                <input type="file" accept="image/*" class="form-control-file" id="formControlFile1" name="image"> -->
+                <input class="btn btn-outline-primary" type="submit" value="Enviar">
+            </form>
+        </div>
+        <!-- <h1>Estalações feita Com equipamento de retiradas</h1> -->
+        <div class="">
+            <form action="/upload_trocas" enctype="multipart/form-data" method="post">
+                <h3>Adicione a foto dos equipamentos</h3>
+                <input type="file" accept="image/*" class="form-control-file" id="formControlFile1" name="image_inst_ret">
+                <input class="btn btn-outline-primary" type="submit" value="Enviar foto">
+            </form>
+        </div>
+
+        <div class="content">
+            <a href="/">
+                <a href="/"><i class='bx bxs-chevron-left bx-fade-left' ></i></a>
+            </a>
+            <a href="/total_trocas"><i class='bx bx-server'></i></a>
+        </div>
+
+</body>
+
+</html>

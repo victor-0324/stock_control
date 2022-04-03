@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stock.css') }}">
+
+    <title>Instalados com retiradas</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+
+            <div class="add">
+                <a href="/"> <i class='bx bxs-exit'></i>
+                </a>
+                <a href="/inst_ret"> <i class='bx bxs-add-to-queue'></i></a>
+            </div>
+
+        </header>
+
+        <div class="item">
+            <div class="item item-1">
+                <h1>Instalados com equipamento de retirada</h1>
+
+                <footer>
+                    <!-- <h2>Data: 01/04/2022</h2> -->
+                    <h2 class="footerText">Data : {{today}}</h2>
+                </footer>
+            </div>
+            <div class="item item-2">
+
+                <table class="tabelas">
+                    <tr>
+                        <td>
+                            <i> Total</i>
+                            <td>
+                                <a href="/">
+                                    <section><i>{{ total_usado  }}</i></section>
+                                </a>
+                            </td>
+                        </td>
+                    </tr>
+                    <tr>{% for inst in inst_usado %}
+                        <td>
+                            <p>{{ inst }}</p> <br>
+                            <!-- <p>Descrição: 1 roteador de 4 antenas + onu + C/verde</p> -->
+                            <td><a href="/delete_inst_ret/{{inst.id}}"><i class='bx bx-trash'></i></a></td>
+
+                            <td>
+                                </a>
+                                <a href="/retiradas"> <i class='bx bxs-add-to-queue'></i>
+                                </a>
+                            </td>
+                        </td>
+
+                        </td>
+                    </tr>{% endfor %}
+
+
+                </table>
+            </div>
+            <!-- <div class="item item-3">
+                <p>{{ inst_usado[0] }} </p>
+                <img src="static/img/inst_ret/{{ image[0] }}" width="80" height="80" />
+            </div> -->
+
+            <!-- <div class="item item-4">
+                <p>{{ inst_usado[2] }}</p>
+                <img src="static/img/inst_ret/{{ image[2] }}" width="80" height="80" />
+            </div> -->
+        </div>
+        <div class="total">
+            <h5>Total</h5>
+            <p> {{ total_usado }} </p>
+        </div>
+        <div class="content">
+            <a href="/instalados_novo"><i class='bx bxs-chevron-left bx-fade-left' ></i></a>
+            <a href="/total_retiradas">
+                <i class='bx bx-chevrons-right bx-fade-left'></i>
+            </a>
+        </div>
+</body>
+
+</html>

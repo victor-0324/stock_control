@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Controle de estoque</title>
+</head>
+
+<body>
+    <div class="vitor">
+        <p>Desenvolvedor <br> Vitor lima <a href="https://github.com/victor-0324" target="_blank" rel="noopener noreferrer"><i class='bx bxl-github'></i></a></p>
+    </div>
+    <div class="conteiner">
+        <div class="index">
+            <div class="cabecario">
+                <h1>Controle de estoque GNET+</h1>
+                <a href="https://www.google.com/search?client=firefox-b-d&q=gnet%2B+martins+rn"><img src="https://gnet.provapp.com.br/logo/default.png" alt=""></a>
+            </div>
+
+            <div class="id">
+                <h2 class="title">
+                    <i class='bx bx-user-check'></i> {{g.user.username}}
+                </h2>
+                <h2 class="subtitle">
+                    id: 0{{g.user.id}}
+            </div>
+        </div>
+
+        <div class="btn1">
+            <div class="item1">
+                <p>Equipamentos usado do estoque novo</p>
+                <a href="/instalacao"><button class="btn"> Instalações </button></a>
+            </div>
+            <div class="item2">
+                <p>Estalaçoes equipamentos retiradas </p>
+                <a href="/inst_ret"><button  class="btn"> inst_ret </button></a>
+            </div>
+            <div class="item3">
+                <p>Clientes das retiradas</p>
+                <a href="/retiradas"><button  class="btn"> Retiradas </button></a>
+            </div>
+
+            <div class="item5">
+                <p>Trocas de equipamentos</p>
+                <a href="/trocas"><button  class="btn"> Trocas </button></a>
+            </div>
+
+            <div class="item4">
+                <p>Registro das OS diarias</p>
+                <a href="/instalados_novo"><button  class="btn"> Estoque </button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
