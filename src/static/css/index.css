@@ -1,0 +1,123 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0%;
+    padding: 0%;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    scroll-padding-top: 2rem;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%, rgba(85, 88, 218, 1) 0%, rgba(95, 209, 249, 1) 100.2%);
+}
+
+.btn {
+    font-size: .8rem;
+    cursor: hand;
+    text-transform: uppercase;
+    background-color: aqua;
+    color: black;
+    font-weight: 900;
+    border: none;
+    border-radius: 1rem;
+    padding: 1em 3em;
+    margin: 2em auto;
+    display: block;
+    box-shadow: 10px 5px 5px black;
+    transition: background .5s ease-in, transform .5s .25s ease-in-out;
+    transition: background .6s ease-in, transform .5s .25s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow: 10px 5px 5px black;
+    background-color: #c61140;
+    transform: scale(1.2);
+    transform: scale(1.2) rotateX(30deg);
+}
+
+.index {
+    padding: 1rem;
+    color: beige;
+    text-align: center;
+}
+
+.index h2 {
+    margin-right: 13rem;
+}
+
+.conteiner {
+    padding: 1.5rem;
+    margin-top: 1.9rem;
+}
+
+.btn1 {
+    text-align: center;
+    /* display: inline-block; */
+    /* vertical-align: top;
+    padding: 1.5rem; */
+}
+
+.item1 {
+    padding: 1.5rem;
+    margin-left: 7rem;
+}
+
+.item2 {
+    padding: 1.5rem;
+    margin-right: 10rem;
+}
+
+.item3 {
+    padding: 1.5rem;
+    margin-left: 7rem;
+}
+
+.item4 {
+    padding: 1.5rem;
+    margin-left: 7rem;
+}
+
+.item5 {
+    padding: 1.5rem;
+    margin-right: 10rem;
+}
+
+p {
+    text-align: unset;
+    font-size: 1rem;
+    color: whitesmoke;
+}
+
+.title {
+    font-size: 1rem;
+    color: aqua;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: aqua;
+}
+
+.cabecario img {
+    padding: 1rem;
+}
+
+.bx-user-check {
+    background-color: darkslateblue;
+    font-size: 1.3rem;
+}
+
+.bxl-github {
+    font-size: 1.2rem;
+    color: black;
+}
+
+.vitor p {
+    color: black;
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

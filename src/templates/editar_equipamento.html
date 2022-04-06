@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexs.css') }}">
+
+    <title>Retiradas</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="">
+            <div>
+                <h1>Editar equipamento</h1>
+                <p>{{equipamento.id,equipamento.modelo,equipamento.cliente,equipamento.estado}}</p>
+
+            </div>
+            <img src="{{url_for('static', filename=image)}}" width="80" height="80" alt="image">
+            <!-- <input id="date" name="date" type="date" value="2017-06-01"> -->
+            <div>
+                <a href="/equipamento/editar/retiradas/{{equipamento.id}}"><button class="btn"> Retiradas </button></a>
+                <a href="/equipamento/editar/instalacao/{{equipamento.id}}"><button class="btn"> Instalação </button></a>
+            </div>
+
+
+        </div>
+
+</body>
+
+</html>

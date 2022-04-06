@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexs.css') }}">
+
+    <title>Clientes</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="">
+            <div>
+                <h1>Editar cliente</h1>
+                <p>{{cliente.id}}</p>
+                <p>{{cliente.nome}}</p>
+
+                <td>{% if cliente.estado == True %}
+                    <p>Ativo</p>
+                    {% else %}
+                    <p>desativado</p>
+                    {% endif %}
+                </td>
+                <div>
+                    <a href="/clientes/deletar/{{cliente.id}}"><i class='bx bx-trash'></i></a>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+</body>
+
+</html>
