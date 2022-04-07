@@ -23,11 +23,11 @@ def init_app():
         from .blueprints import auth_app
         app.register_blueprint(auth_app)
 
-        # Aplicativo de instalção com equipamentos de retiradas
+        # Aplicativo dos equipa,emtos 
         from .blueprints import equipamentos_app
         app.register_blueprint(equipamentos_app)
 
-
+        # Aplicativo de configuração dos clientes 
         from .blueprints import clientes_app
         app.register_blueprint(clientes_app)
 

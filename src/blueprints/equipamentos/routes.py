@@ -10,7 +10,7 @@ equipamentos_app = Blueprint(
 )
 
 
-# Tela de caminho das retiradas das instalções
+
 @equipamentos_app.route("/", methods=["GET"])
 def mostrar_equipamentos():
     today = datetime.now().strftime("%d/%m/%Y")

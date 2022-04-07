@@ -14,21 +14,25 @@
 
 <body>
     <div class="box">
-        <div class="">
-            <div>
-                <h1>Editar equipamento</h1>
-                <p>{{equipamento.id,equipamento.modelo,equipamento.cliente,equipamento.estado}}</p>
 
-            </div>
-            <img src="{{url_for('static', filename=image)}}" width="80" height="80" alt="image">
-            <!-- <input id="date" name="date" type="date" value="2017-06-01"> -->
-            <div>
-                <a href="/equipamento/editar/retiradas/{{equipamento.id}}"><button class="btn"> Retiradas </button></a>
-                <a href="/equipamento/editar/instalacao/{{equipamento.id}}"><button class="btn"> Instalação </button></a>
-            </div>
-
-
+        <div class="eqp">
+            <h1>Editar equipamento</h1><br>
+            <i>ID: {{equipamento.id}}</i><br>
+            <i>Modelo: {{equipamento.modelo}}</i><br>
+            <i>Nome: {{equipamento.cliente}}</i><br>
+            <i>Estado: {{equipamento.estado}}</i><br>
         </div>
+
+        <h3>Foto</h3>
+        <img src="{{url_for('static', filename=image)}}" width="80" height="80" alt="image">
+        <!-- <input id="date" name="date" type="date" value="2017-06-01"> -->
+        <div>
+            <a href="/equipamento/editar/retiradas/{{equipamento.id}}"><button class="btn"> Retiradas </button></a>
+            <a href="/equipamento/editar/instalacao/{{equipamento.id}}"><button class="btn"> Instalação </button></a>
+        </div>
+        <a href="/equipamentos "><i class='bx bxs-chevron-left bx-fade-left' ></i></a>
+
+    </div>
 
 </body>
 

@@ -12,5 +12,3 @@ engine = sqlalchemy.create_engine(
 # declerando a base do banco de dados
 Base = declarative_base()
 
-# # Salvando  a imagem na pagina img
-# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}

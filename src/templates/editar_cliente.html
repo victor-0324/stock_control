@@ -14,29 +14,16 @@
 
 <body>
     <div class="box">
-        <div class="">
-            <div>
-                <h1>Editar cliente</h1>
-                <p>{{cliente.id}}</p>
-                <p>{{cliente.nome}}</p>
-
-                <td>{% if cliente.estado == True %}
-                    <p>Ativo</p>
-                    {% else %}
-                    <p>desativado</p>
-                    {% endif %}
-                </td>
-                <div>
-                    <a href="/clientes/deletar/{{cliente.id}}"><i class='bx bx-trash'></i></a>
-                </div>
-
-
-            </div>
-
-
+        <div class="eqp">
+            <h1>Editar cliente</h1><br>
+            <i>ID: {{cliente.id}}</i><br>
+            <i>Nome: {{cliente.nome}}</i><br> {% if cliente.estado == True %}
+            <i>Estado: Ativo</i> {% else %}
+            <i>Estado: desativado</i> {% endif %}
 
         </div>
-
+        <a href="/clientes/deletar/{{cliente.id}}"><i class='bx bx-trash'></i></a>
 </body>
+
 
 </html>

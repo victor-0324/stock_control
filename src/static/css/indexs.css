@@ -113,3 +113,17 @@ h2 {
 .primeirolabel {
     font-size: 1.3rem;
 }
+
+.eqp i {
+    text-align: center;
+    color: beige;
+}
+
+.eqp {
+    padding: 1.5rem;
+}
+
+.bx-trash {
+    color: black;
+    font-size: 1.3rem;
+}
