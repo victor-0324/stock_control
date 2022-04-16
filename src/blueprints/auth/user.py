@@ -6,6 +6,6 @@ class User:
         self.password = password
 
     def __repr__(self):
-        return f'<User: {self.username}{self.password}>'
+        return f'<User: {self.username}>'
 
  

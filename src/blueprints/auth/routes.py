@@ -11,8 +11,8 @@ auth_app = Blueprint(
 users = []
 users.append(User(id=1, username='Vitor', password='123'))
 users.append(User(id=2, username='vitor', password='123'))
-users.append(User(id=3, username='Thiago', password='1515'))
-users.append(User(id=4, username='thiago', password='1515'))
+users.append(User(id=3, username='Mariano', password='1515'))
+users.append(User(id=4, username='mariano', password='1515'))
 
 
 @auth_app.before_request
@@ -38,7 +38,7 @@ def login():
             return redirect(url_for('auth_app.index'))
 
         return redirect(url_for('auth_app.login'))
-    return render_template('login.html')  
+    return render_template('/pages/auth/login.html')  
 
 # Tela Iniciarl
 @auth_app.route("/", methods=["GET","POST"])
@@ -47,4 +47,4 @@ def index():
         # abort(403)
 
         return redirect(url_for('auth_app.login')) 
-    return render_template('index.html')
+    return render_template('/pages/equipamento/index.html')

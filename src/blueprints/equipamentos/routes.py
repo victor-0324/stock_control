@@ -16,19 +16,19 @@ def mostrar_equipamentos():
     today = datetime.now().strftime("%d/%m/%Y")
     equipamentos = VerEquipamentos.ver_equipamentos()
     total = len(equipamentos)
-
-    return render_template("/equipamentos.html",equipamento=equipamentos,total=total,today=today)
+    # image = os.listdir('./src/static/media/equipamentos/')
+    return render_template("/pages/equipamento/mostrar.html",equipamentos=equipamentos,total=total,today=today)
 
 
 @equipamentos_app.route("/novo", methods=["GET","POST"])
 def novo():
-    if request.method == "POST":
+    if request.method == "POST": 
         nome = request.form['name']
-        image = request.files['image']
-        image.save('./src/static/media/equipamentos/'+ nome +'.jpeg')
+        # image = request.files['image']
+        # image.save('./src/static/media/equipamentos/'+ nome +'.jpeg')
         CriarEquipamentos.criar_equipamento(nome)
         return redirect(url_for('equipamentos_app.mostrar_equipamentos'))
-    return render_template("/novo_equipamento.html")
+    return render_template("/pages/equipamento/novo.html")
     
 
 @equipamentos_app.route("/editar/<int:id_equipamento>", methods=["GET","POST"])

@@ -5,11 +5,11 @@ from src.database.models import Equipamentos
 class CriarEquipamentos:
     """ Create a new user """
     @classmethod
-    def criar_equipamento(cls, name):
+    def criar_equipamento(cls, name, data):
         """ someting """
         with DBConnectionHendler() as db_connection:
             try:
-                criar_novo_equipamento = Equipamentos(modelo=name)
+                criar_novo_equipamento = Equipamentos(modelo=name.upper(), estado=0, data=data)
                 db_connection.session.add(criar_novo_equipamento)
                 db_connection.session.commit()
             except:

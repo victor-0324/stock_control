@@ -31,6 +31,13 @@ def init_app():
         from .blueprints import clientes_app
         app.register_blueprint(clientes_app)
 
+        # Aplicativo de configuração das instalação 
+        from .blueprints import instalacao_app
+        app.register_blueprint(instalacao_app)
+
+        from .blueprints import retirar_app
+        app.register_blueprint(retirar_app)
+
         # Criando a enginer
         Base.metadata.create_all(engine)
 
