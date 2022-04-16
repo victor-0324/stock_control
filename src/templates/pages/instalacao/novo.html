@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i> Adicionar nova instalação
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form action="" enctype="multipart/form-data" method="POST">
+                                <label for="">Nome do cliente</label>
+                                <input type="text" class="form-control" name="name" placeholder="Novo cliente"> <br>
+                                <label for="">Equipamento usado</label>
+                                <input type="text" class="form-control" name="nameeqp" placeholder="Nome do Equipamento"> <br>
+                                <div class="form-group">
+                                    <label>Data </label>
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                        <input name="data" type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="file" accept="image/*" class="form-control-file" id="formControlFile1" name="image"><br>
+
+
+
+                                <input class="btn btn-outline-primary" type="submit" value="Ativar">
+
+                            </form>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+
+
+<!-- /.content-wrapper -->
+
+
+{% endblock %}

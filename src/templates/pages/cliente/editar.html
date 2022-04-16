@@ -1,0 +1,70 @@
+ {% extends 'base.html' %} {% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="far fa-chart-bar"></i> Detalhe do cliente
+                            </h3>
+                            <div class="card-tools">
+                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                    <a href="/" type="button" class="btn btn-primary btn-sm" data-toggle="off">Voltar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+
+
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <!-- <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3> -->
+                                    <p>Foto da instalação</p>
+                                    <div class="col-12">
+                                        <img src="{{url_for('static', filename=image)}}" width="150" height="100" alt="image">
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h3 class="my-3">
+                                        <font style="vertical-align: inherit;"> {{cliente.nome}} </font>
+                                    </h3>
+                                    <p>
+                                        <font style="vertical-align: inherit;">{% if cliente.estado != 0 %} Estado: Ativo {% else %} Estado: desativado {% endif %}</font>
+                                    </p>
+                                    <p>data da instalação <br>({{cliente.data}})</p> ID: {{cliente.id}}
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        {% endblock %}
