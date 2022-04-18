@@ -48,9 +48,11 @@
                                         <font style="vertical-align: inherit;"> {{cliente.nome}} </font>
                                     </h3>
                                     <p>
-                                        <font style="vertical-align: inherit;">{% if cliente.estado != 0 %} Estado: Ativo {% else %} Estado: desativado {% endif %}</font>
+                                        <font style="vertical-align: inherit;">{% if cliente.estado == '0' %} Estado: Ativo
+                                            <p>data da instalação <br>({{cliente.data}})</p> ID: {{cliente.id}}{% else %} Estado: desativado
+                                            <p>data do recolhimento <br>({{cliente.data}})</p>{% endif %}</font>
                                     </p>
-                                    <p>data da instalação <br>({{cliente.data}})</p> ID: {{cliente.id}}
+
 
 
                                 </div>

@@ -20,12 +20,12 @@
                     <div class="card text-center">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="far fa-chart-bar"></i> Gerenciar clientes
+                                <i class="far fa-chart-bar"></i> Antes de cadastrar verifique se o cliente esta ativo<br>Se estiver apague e atualize o cadastro como retirado
                             </h3>
 
                             <div class="card-tools">
                                 <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                                    <a href="/cliente/novo" type="button" class="btn btn-primary btn-sm" data-toggle="off">Cadastrar</a>
+                                    <a href="/retirar/cadastro" type="button" class="btn btn-primary btn-sm" data-toggle="off">Cadastrar</a>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                     <div class="col-md-8 offset-md-2">
                                         <form action="" enctype="multipart/form-data" method="POST">
                                             <div class="input-group">
-                                                <input type="search" class="form-control form-control-lg" name="pesquisa" placeholder="Digite suas palavras-chave aqui">
+                                                <input type="search" class="form-control form-control-lg" name="pesquisa" placeholder="Busca">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-lg btn-default">
                                                         <i class="fa fa-search"></i>
@@ -61,9 +61,6 @@
                                     </div>
 
                                     <p>Total: {{total}}</p>
-
-
-
                                     {% for cliente in clientes %}
                                     <tr>
                                         <td>{{cliente.id}}</td>
@@ -80,7 +77,9 @@
                                                     Ação
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="/cliente/retirar/{{cliente.id}}">Retirar</a>
+
+                                                    <a class="dropdown-item" href="/retirar/retirar">Retirar</a>
+
                                                     <a class="dropdown-item" href="/cliente/deletar/{{cliente.id}}">deletar</a>
                                                 </div>
                                             </div>

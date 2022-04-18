@@ -20,30 +20,19 @@
                     <div class="card text-center">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="far fa-chart-bar"></i> Gerenciar clientes
+                                <i class="far fa-chart-bar"></i> Busca concluida
                             </h3>
 
-                            <div class="card-tools">
+                            <!-- <div class="card-tools">
                                 <div class="btn-group" id="realtime" data-toggle="btn-toggle">
                                     <a href="/cliente/novo" type="button" class="btn btn-primary btn-sm" data-toggle="off">Cadastrar</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="col-md-8 offset-md-2">
-                                <form action="" enctype="multipart/form-data" method="POST">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control form-control-lg" name="pesquisa" placeholder="Digite suas palavras-chave aqui">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-lg btn-default">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
                             <table class="table table-bordered table table-hover table-head-fixed table-striped">
                                 <thead>
                                     <tr>
@@ -59,11 +48,11 @@
                                 <tbody>
 
                                     <tr>
-                                        <td>{{pesquisa[0]}}</td>
-                                        <td>{{pesquisa[1]}}</td>
-                                        <td>{{pesquisa[2]}}</td>
-                                        <td></td>
-                                        {% if pesquisa[3] == '0' %}
+                                        <td>{{pesquisa.id}}</td>
+                                        <td>{{pesquisa.nome}}</td>
+                                        <td>{{pesquisa.data}}</td>
+                                        <td>{{pesquisa.equipamento}}</td>
+                                        {% if pesquisa.stado == '0' %}
                                         <td> Ativo</td> {% else %}
                                         <td> Desativado </td> {% endif %}
 
@@ -73,7 +62,11 @@
                                                 Ação
                                             </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="/cliente/retirar/{{pesquisa[3]}}">Retirar</a>
+                                                    <form action="" method="get"><button type="button" class="btn btn-block btn-info"><font style="vertical-align: inherit;"> </font>
+                                                                     <a class="dropdown-item" href="/cliente/deletar/{{pesquisa.id}}"> Apagar ?</a>  </button></form>
+
+
+                                                    <!-- <a class="dropdown-item" href="/cliente/deletar/{{pesquisa.id}}">Deletar</a> -->
                                                 </div>
                                             </div>
                                         </td>

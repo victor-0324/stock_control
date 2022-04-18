@@ -16,7 +16,7 @@ def mostrar_cliente():
     today = datetime.now().strftime("%d/%m/%Y")
     clientes = VerCliente.ver_cliente()
     total = len(clientes)
-
+    print(type(clientes))
     return render_template("/pages/cliente/mostrar.html",clientes=clientes,total=total,today=today)
 
 
@@ -26,7 +26,7 @@ def novo():
         nome = request.form['name']
         data = request.files['data']
         
-        CriarCliente.criar_cliente(nome,data)
+        CriarCliente.criar_cliente(nome.upper(), data)
         return redirect(url_for('clientes_app.mostrar_cliente'))
     return render_template("/pages/cliente/novo.html")
     

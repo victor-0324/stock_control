@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, JSON, Integer, Boolean
+from sqlalchemy import Column, String, Integer
 from src.database import Base 
 
 
@@ -7,7 +7,7 @@ class Equipamentos(Base):
     id =  Column(Integer,primary_key=True)
     modelo = Column(String(80),nullable=False)
     data = Column(String(80))
-    historico = Column(JSON)
+    equipamento = Column(String(80))
     estado = Column(String(80))
     
 

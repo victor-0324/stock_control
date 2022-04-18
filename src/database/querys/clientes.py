@@ -9,7 +9,7 @@ class CriarCliente:
         """ someting """
         with DBConnectionHendler() as db_connection:
             try:
-                cliente = Cliente(nome=nome.upper(), estado=0, data=data,)
+                cliente = Cliente(nome=nome.upper(), estado=0, data=data, equipamento='Novo')
                 
                 db_connection.session.add(cliente)
                 db_connection.session.commit()
@@ -19,22 +19,23 @@ class CriarCliente:
             finally:
                 db_connection.session.close()
 
-# class RetirarCliente:
-#     """ Create a new user """
-#     @classmethod
-#     def retirar_cliente(cls):
-#         """ someting """
-#         with DBConnectionHendler() as db_connection:
-#             try:
-#                 cliente = Cliente(estado=1)
+class RetirarCliente:
+    """ Create a new user """
+    @classmethod
+    def retirar_cliente(cls, nome, data):
+        """ someting """
+        with DBConnectionHendler() as db_connection:
+            try:
+
+                cliente = Cliente(nome=nome.upper(), estado=1, data=data, equipamento='Retirado')
                 
-#                 db_connection.session.add(cliente)
-#                 db_connection.session.commit()
-#             except:
-#                 db_connection.session.rollback()
-#                 raise
-#             finally:
-#                 db_connection.session.close()
+                db_connection.session.add(cliente)
+                db_connection.session.commit()
+            except:
+                db_connection.session.rollback()
+                raise
+            finally:
+                db_connection.session.close()
 
 class VerCliente:
     """ Create a new user """

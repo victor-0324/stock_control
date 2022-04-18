@@ -24,9 +24,10 @@ def mostrar_equipamentos():
 def novo():
     if request.method == "POST": 
         nome = request.form['name']
+        data = request.form['data']
         # image = request.files['image']
         # image.save('./src/static/media/equipamentos/'+ nome +'.jpeg')
-        CriarEquipamentos.criar_equipamento(nome)
+        CriarEquipamentos.criar_equipamento(nome, data)
         return redirect(url_for('equipamentos_app.mostrar_equipamentos'))
     return render_template("/pages/equipamento/novo.html")
     

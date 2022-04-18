@@ -9,7 +9,7 @@ class CriarEquipamentos:
         """ someting """
         with DBConnectionHendler() as db_connection:
             try:
-                criar_novo_equipamento = Equipamentos(modelo=name.upper(), estado=0, data=data)
+                criar_novo_equipamento = Equipamentos(modelo=name.upper(), estado=0, data=data, equipamento='Novo')
                 db_connection.session.add(criar_novo_equipamento)
                 db_connection.session.commit()
             except:
@@ -18,6 +18,24 @@ class CriarEquipamentos:
             finally:
                 db_connection.session.close()
 
+
+class RetirarEquipamento:
+    """ Create a new user """
+    @classmethod
+    def retirar_equipamento(cls, name, data):
+        """ someting """
+        with DBConnectionHendler() as db_connection:
+            try:
+
+                cliente = Equipamentos(modelo=name.upper(), estado=1, data=data, equipamento='Retirado')
+                
+                db_connection.session.add(cliente)
+                db_connection.session.commit()
+            except:
+                db_connection.session.rollback()
+                raise
+            finally:
+                db_connection.session.close()
 
 class VerEquipamentos:
     """ Create a new user """
