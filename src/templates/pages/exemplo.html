@@ -3,7 +3,7 @@
 
 
 {% macro _body() %}
-<h2>:( Perdão esta página ainda esta em desenvolvimento!</h2>
+<h1>exemplo</h1>
 {% endmacro %}
 
 
@@ -14,15 +14,13 @@
 
         title="Exemplo", 
 
-        card_body=_body(),
-
-        card_footer=buttons(
+        card_tools=buttons(
+            link="novo",
             button_type="button",
-            link="/equipamentos",
-            _class="btn-default float-right",
-            button_text="Voltar"),
-        is_form=True,
-        form_action=""
+            _class="btn-default",
+            button_text="Novo"),
+
+        card_body=_body()
         )}}
 </div>
 {% endmacro %}

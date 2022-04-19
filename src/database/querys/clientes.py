@@ -9,7 +9,7 @@ class CriarCliente:
         """ someting """
         with DBConnectionHendler() as db_connection:
             try:
-                cliente = Cliente(nome=nome.upper(), estado=0, data=data, equipamento='Novo')
+                cliente = Cliente(nome=nome.upper(), estado="Ativo", data=data, equipamento='Nenhum')
                 
                 db_connection.session.add(cliente)
                 db_connection.session.commit()

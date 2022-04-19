@@ -1,5 +1,7 @@
+""" Aplicação de Controle de estoque """
+
 from flask import Blueprint, request, render_template, url_for, redirect
-from src.database.querys import CriarEquipamentos, VerEquipamentos, VerEquipamentoId, DeletarEquipamentos
+from src.database.querys import EquipamentosQuerys
 from datetime import datetime
 import os
 
@@ -12,9 +14,10 @@ equipamentos_app = Blueprint(
 
 
 @equipamentos_app.route("/", methods=["GET"])
-def mostrar_equipamentos():
+def mostrar():
+    """ Mostra todos os equipamentos """
     today = datetime.now().strftime("%d/%m/%Y")
-    equipamentos = VerEquipamentos.ver_equipamentos()
+    equipamentos = EquipamentosQuerys().mostrar()
     total = len(equipamentos)
     # image = os.listdir('./src/static/media/equipamentos/')
     return render_template("/pages/equipamento/mostrar.html",equipamentos=equipamentos,total=total,today=today)
@@ -22,27 +25,25 @@ def mostrar_equipamentos():
 
 @equipamentos_app.route("/novo", methods=["GET","POST"])
 def novo():
-    if request.method == "POST": 
-        nome = request.form['name']
-        data = request.form['data']
-        # image = request.files['image']
-        # image.save('./src/static/media/equipamentos/'+ nome +'.jpeg')
-        CriarEquipamentos.criar_equipamento(nome, data)
-        return redirect(url_for('equipamentos_app.mostrar_equipamentos'))
+    """ Cria um novo equipamento no sistema """
+    if request.method == "POST":
+        mensagem = request.form.get("name")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        EquipamentosQuerys.novo(mensagem, date_time)
+        return redirect(url_for('equipamentos_app.mostrar'))
     return render_template("/pages/equipamento/novo.html")
-    
+
 
 @equipamentos_app.route("/editar/<int:id_equipamento>", methods=["GET","POST"])
 def editar(id_equipamento):
-    equipamento = VerEquipamentoId.ver_equipamento_id(id_equipamento)
-    image = os.path.join('/media/equipamentos/', equipamento.modelo +'.jpeg')
-    print(image)
-    return render_template('/editar_equipamento.html',equipamento=equipamento,image=image)
+    """ Edita as caracteristicas de um equipamento """
+    return render_template('/pages/equipamento/editar.html')
 
 
 @equipamentos_app.route("/deletar/<int:id_equipamento>", methods=["GET","POST"])
 def deletar(id_equipamento):
-    DeletarEquipamentos.deletar(id_equipamento)
-
-    return redirect(url_for('equipamentos_app.mostrar_equipamentos'))
+    """ Deleta um equipamento """
+    print(id_equipamento)
+    EquipamentosQuerys.deletar(id_equipamento)
+    return redirect(url_for('equipamentos_app.mostrar'))
     # return render_template('equipamentos.html')

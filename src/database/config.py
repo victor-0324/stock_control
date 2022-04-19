@@ -8,7 +8,7 @@ class DBConnectionHendler:
     """ Sqlalchemy database connection """
 
     def __init__(self) -> None:
-        self.__connection_string = "mariadb+mariadbconnector://bingo_game:bingogn@127.0.0.1:3306/stock_control"
+        self.__connection_string = "sqlite:///./test.db"
         self.session = None
 
     def get_engine(self):

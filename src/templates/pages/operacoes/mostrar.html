@@ -7,22 +7,22 @@
     <thead>
         <tr>
             <th class="col-1">ID</th>
-            <th class="col-3">Modelo</th>
-            <th class="col-3">Cliente Atual</th>
-            <th class="col-2">Estado</th>
-            <th class="col-3">Ultima Atualização</th>
+            <th class="col-3">Tecnico Reponsavel</th>
+            <th class="col-3">Cliente</th>
+            <th class="col-2">Operação</th>
+            <th class="col-3">Data e Hora</th>
             <th class="col-1">Ações</th>
         </tr>
     </thead>
 
     <tbody>
-        {% for equipamento in equipamentos %}
+        {% for cliente in clientes %}
         <tr>
-            <td>{{ equipamento.id }}</td>
-            <td>{{ equipamento.modelo }}</td>
-            <td>{{ equipamento.cliente }}</td>
-            <td>{{ equipamento.estado }}</td>
-            <td>{{ equipamento.data }}</td>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.modelo }}</td>
+            <td>{{ cliente.estado }}</td>
+            <td>{{ cliente.cliente }}</td>
+            <td>{{ cliente.data }}</td>
             <td>
                 <div class="input-group-prepend float-right">
                     <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
@@ -30,8 +30,8 @@
                         </button>
 
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="editar/{{equipamento.id}}">Editar</a>
-                        <a class="dropdown-item" href="deletar/{{equipamento.id}}">Deletar</a>
+                        <a class="dropdown-item" href="#">Editar</a>
+                        <a class="dropdown-item" href="/clientes/deletar/{{cliente.id}}">Deletar</a>
                     </div>
                 </div>
             </td>
@@ -45,13 +45,13 @@
 {% macro mostrar() %}
 <div class="col">
     {{card_primary(
-        title="Estoque", 
+        title="Ordens de Serviço", 
 
         card_tools=buttons(
             link="novo",
             button_type="button",
             _class="btn-primary btn-sm",
-            button_text="Cadastrar"),
+            button_text="Nova Ordem de Serviço"),
 
         card_body=_body()
         )}}

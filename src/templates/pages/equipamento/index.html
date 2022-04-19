@@ -1,62 +1,75 @@
-{% extends 'base.html' %} {% block content %}
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-            </div>
-            <!-- /.row -->
+{% extends 'base.html' %} 
+
+{% macro _body() %}
+<h2>Sejá bem vindo a versão beta do Programa!</h2>
+<h2></h2>
+
+
+{% endmacro %}
+
+
+{% macro mostrar() %}   
+<div class="row">
+    <div class="col-lg-4 col-6">
+      <!-- small card -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>150</h3>
+
+          <h4>Equipaamentos Cadastrados</h4>
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="far fa-chart-bar"></i> Controle de estoque
-                            </h3>
-
-                            <div class="card-tools">
-                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                                    <a href="/cliente" type="button" class="btn btn-primary btn-sm" data-toggle="off">Operaçoẽs</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- /.card-header -->
-
-                        <div class="card-body">
-                            <img src="https://gnet.provapp.com.br/logo/default.png" alt="">
-
-                            <!-- /.card-body -->
-                            <div class="card-footer clearfix">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-
-                    </div>
-                </div>
-                <!-- /.col-md-6 -->
-            </div>
-            <!-- /.row -->
+        <div class="icon">
+          <i class="fas fa-shopping-cart"></i>
         </div>
-        <!-- /.container-fluid -->
+        <a href="#" class="small-box-footer">
+          Mais Informações <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
     </div>
-    <!-- /.content -->
+
+    <div class="col-lg-4  col-6">
+        <!-- small card -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>44</h3>
+  
+            <h4>Clientes Cadastrados</h4>
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <a href="#" class="small-box-footer">
+            Mais Informações <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+
+    <div class="col-lg-4 col-6">
+      <!-- small card -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>53</h3>
+
+          <h4>Ordens de Serviço</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-flag"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          Mais Informações <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+ 
 </div>
-<!-- /.content-wrapper -->
+{{card_primary(
+
+
+    card_body=_body(),
+    _class="text-center"
+    )}}
+{% endmacro %}
+
+{% block content %}
+{{ wrapper_content(mostrar()) }}
 {% endblock %}
