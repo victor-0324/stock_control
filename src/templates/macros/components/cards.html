@@ -2,8 +2,8 @@
 {% from "macros/components/select.html" import select %}
 
 
-{% macro  card_primary(component_args, title, card_body, card_footer, card_tools, is_form, form_action ) %}
-  <div class="card card">
+{% macro  card_primary(component_args, title, card_body, card_footer, card_tools, is_form, form_action, _class ) %}
+  <div class="card card {{ _class }} ">
 
     <div class="card-header">
       <h3 class="card-title">

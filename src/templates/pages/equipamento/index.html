@@ -1,24 +1,73 @@
 {% extends 'base.html' %} 
 
-
-
 {% macro _body() %}
-<h1>Este é o layolt da nossa aplicação!</h1>
-<h1>Muito obrigado por utilizar!</h1>
+<h2>Sejá bem vindo a versão beta do Programa!</h2>
+<h2></h2>
+
+
 {% endmacro %}
 
 
-{% macro mostrar() %}
-<div class="col">
+{% macro mostrar() %}   
+<div class="row">
+    <div class="col-lg-4 col-6">
+      <!-- small card -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>150</h3>
 
-    {{card_primary(
+          <h4>Equipaamentos Cadastrados</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          Mais Informações <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
 
-        title="Exemplo", 
+    <div class="col-lg-4  col-6">
+        <!-- small card -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>44</h3>
+  
+            <h4>Clientes Cadastrados</h4>
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <a href="#" class="small-box-footer">
+            Mais Informações <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
 
+    <div class="col-lg-4 col-6">
+      <!-- small card -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>53</h3>
 
-        card_body=_body()
-        )}}
+          <h4>Ordens de Serviço</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-flag"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          Mais Informações <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+ 
 </div>
+{{card_primary(
+
+
+    card_body=_body(),
+    _class="text-center"
+    )}}
 {% endmacro %}
 
 {% block content %}
