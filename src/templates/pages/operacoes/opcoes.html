@@ -1,0 +1,72 @@
+{% extends 'base.html' %} 
+
+
+
+{% macro _body() %}
+<div class="row">
+    <div class="col-lg-4 col-6">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h2>Instalação</h2>
+        </div>
+        <div class="icon">
+            <i class="fas fa-user-plus"></i>
+        </div>
+        <a href="instalar" class="small-box-footer">
+          <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-6">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h2>Troca</h2>
+        </div>
+        <div class="icon">
+            <i class="fas fa-flag"></i>
+        </div>
+        <a href="trocar" class="small-box-footer">
+          <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-6">
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h2>Retirada</h2>
+        </div>
+        <div class="icon">
+          <i class="fas fa-chart-pie"></i>
+        </div>
+        <a href="retirar" class="small-box-footer">
+          <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro mostrar() %}
+<div class="col">
+    {{card_primary(
+        title="Ordens de Serviço", 
+
+        card_tools=buttons(
+            link="/operacoes",
+            button_type="button",
+            _class="btn-default btn-sm",
+            button_text="Voltar"),
+
+        card_body=_body()
+        )}}
+</div>
+{% endmacro %}
+
+{% block content %}
+{{ wrapper_content(
+    mostrar()
+) }}
+{% endblock %}

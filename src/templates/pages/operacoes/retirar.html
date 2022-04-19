@@ -3,10 +3,7 @@
 
 
 {% macro _body() %}
-      <div class="form-group">
-        <label for="exampleInputEmail1">Modelo do Equipamento</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Ex: ...">
-      </div>
+<h2>:( Perdão esta página ainda esta em desenvolvimento!</h2>
 {% endmacro %}
 
 
@@ -20,9 +17,10 @@
         card_body=_body(),
 
         card_footer=buttons(
-            button_type="submit",
+            button_type="button",
+            link="/operacoes/novo",
             _class="btn-default float-right",
-            button_text="Novo"),
+            button_text="Voltar"),
         is_form=True,
         form_action=""
         )}}

@@ -3,8 +3,7 @@
 
 
 {% macro _body() %}
-<h1>Este é o layolt da nossa aplicação!</h1>
-<h1>Muito obrigado por utilizar!</h1>
+<h1>exemplo</h1>
 {% endmacro %}
 
 
@@ -15,6 +14,11 @@
 
         title="Exemplo", 
 
+        card_tools=buttons(
+            link="novo",
+            button_type="button",
+            _class="btn-default",
+            button_text="Novo"),
 
         card_body=_body()
         )}}

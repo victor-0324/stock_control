@@ -6,11 +6,11 @@ from flask import Flask
 def init_app():
     """ Contruindo o app """
     app = Flask(__name__)
-    
+
     # Configuração do app
     app.secret_key = 'vitorvitoriaeyaramariaauvesdacosta'
-   
-# Database
+
+    # Database
     from .database import DBConnectionHendler
     from .database import Base
 
@@ -23,7 +23,7 @@ def init_app():
         from .blueprints import auth_app
         app.register_blueprint(auth_app)
 
-        # Aplicativo dos equipa,emtos 
+        # Aplicativo dos equipamentos 
         from .blueprints import equipamentos_app
         app.register_blueprint(equipamentos_app)
 
@@ -31,15 +31,11 @@ def init_app():
         from .blueprints import clientes_app
         app.register_blueprint(clientes_app)
 
-        # Aplicativo de configuração das instalação 
-        from .blueprints import instalacao_app
-        app.register_blueprint(instalacao_app)
-
-        from .blueprints import retirar_app
-        app.register_blueprint(retirar_app)
+        # Aplicativo de configuração das instalação
+        from .blueprints import operacoes_app
+        app.register_blueprint(operacoes_app)
 
         # Criando a enginer
         Base.metadata.create_all(engine)
 
         return app
-
