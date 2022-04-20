@@ -1,10 +1,48 @@
 {% extends 'base.html' %} 
 
+{% macro _tools() %}
+<div class="input-group-prepend float-right">
+    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+            Action
+        </button>
 
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Novo Cliente</a>
+        <a class="dropdown-item" href="/clientes/deletar/">Novo Equipamento</a>
+    </div>
+</div>
+{% endmacro %}
 
 {% macro _body() %}
-<h2>:( Perdão esta página ainda esta em desenvolvimento!</h2>
+
+<div class="row">
+    <label for="">Selecione um Cliente</label>
+    {{ select(clientes_disponiveis, name="Selecione um Cliete") }}
+</div>
+
+<br>
+
+<div class="row">
+    <label for="">Selecione um Equipamento</label>
+    {{ select(equipamentos_disponiveis, name="Selecione um Equipamento") }}
+    <div class="row">
+    </div>
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputFile">Adcione uma Foto</label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="exampleInputFile">
+            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        </div>
+    </div>
+</div>
+    
+    <br>
+    
 {% endmacro %}
+
 
 
 {% macro mostrar() %}
@@ -12,13 +50,15 @@
 
     {{card_primary(
 
-        title="Exemplo", 
+        title="Instalar", 
 
         card_body=_body(),
+        card_tools=_tools(),
+
+
 
         card_footer=buttons(
-            button_type="button",
-            link="/operacoes/novo",
+            button_type="subit",
             _class="btn-default float-right",
             button_text="Voltar"),
         is_form=True,

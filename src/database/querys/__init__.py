@@ -2,5 +2,5 @@
 
 
 from .equipamentos import EquipamentosQuerys
-from .clientes import CriarCliente, VerCliente, VerClienteId, DeletarCliente, RetirarCliente 
+from .clientes import ClientesQuerys
 from .operacoes import OperacoesQuerys

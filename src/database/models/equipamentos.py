@@ -7,9 +7,7 @@ class Equipamentos(Base):
     id =  Column(Integer,primary_key=True)
     modelo = Column(String(80),nullable=False)
     data = Column(String(80))
-    equipamento = Column(String(80))
     estado = Column(String(80))
-    
 
     def __rep__(self):
         return f'{self.modelo}{self.estado}{self.historico}{self.data}'

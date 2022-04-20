@@ -2,7 +2,7 @@ from src.database.config import DBConnectionHendler
 from src.database.models import Cliente
 
 
-class CriarCliente:
+class ClientesQuerys:
     """ Create a new user """
     @classmethod
     def criar_cliente(cls, nome, data):
@@ -19,8 +19,6 @@ class CriarCliente:
             finally:
                 db_connection.session.close()
 
-class RetirarCliente:
-    """ Create a new user """
     @classmethod
     def retirar_cliente(cls, nome, data):
         """ someting """
@@ -37,15 +35,12 @@ class RetirarCliente:
             finally:
                 db_connection.session.close()
 
-class VerCliente:
-    """ Create a new user """
     @classmethod
-    def ver_cliente(cls):
-        """ someting """
+    def mostrar(cls):
+        """ Retorna uma lista de todos os clientes """
         with DBConnectionHendler() as db_connection:
             try:
                 return db_connection.session.query(Cliente).all()
-        
             except:
                 db_connection.session.rollback()
                 raise
@@ -54,8 +49,6 @@ class VerCliente:
 
 
 
-class VerClienteId:
-    """ Create a new user """
     @classmethod
     def ver_cliente_id(cls, cliente_id):
         """ someting """
