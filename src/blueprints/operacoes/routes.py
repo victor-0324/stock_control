@@ -1,19 +1,23 @@
+"""Rotas de Operações"""
+
+
 from flask import Blueprint, request, render_template, url_for, redirect
 from src.database.querys import OperacoesQuerys, ClientesQuerys, EquipamentosQuerys
 from datetime import datetime
-import os
 
 operacoes_app = Blueprint("operacoes_app", __name__, url_prefix="/operacoes")
 
 
 @operacoes_app.route("/", methods=["GET"])
 def mostrar():
+    """Mostra todas as operações"""
     operacoes = OperacoesQuerys.mostrar()
     return render_template("/pages/operacoes/mostrar.html")
 
 
 @operacoes_app.route("/novo", methods=["GET", "POST"])
 def novo():
+    """Nova Operação"""
     operacoes = OperacoesQuerys.mostrar()
     return render_template("/pages/operacoes/opcoes.html")
 
@@ -45,6 +49,7 @@ def instalar():
 
 @operacoes_app.route("/instalar/novo/cliente", methods=["GET", "POST"])
 def instalar_novo_cliente():
+    """Cria um novo cliente"""
     if request.method == "POST":
         nome = request.form["name"]
         date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -67,6 +72,7 @@ def instalar_novo_equipamento():
 
 @operacoes_app.route("/trocar", methods=["GET", "POST"])
 def trocar():
+    """Realiza a troca de um equipamento"""
     if request.method == "POST":
         ...
 
@@ -75,6 +81,7 @@ def trocar():
 
 @operacoes_app.route("/retirar", methods=["GET", "POST"])
 def retirar():
+    """Faz a retirada de um equipamento"""
     if request.method == "POST":
         ...
 
