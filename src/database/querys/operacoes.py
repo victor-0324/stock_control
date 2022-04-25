@@ -3,10 +3,11 @@ from src.database.models import Operacoes
 
 
 class OperacoesQuerys:
-    """ Create a new user """
+    """Create a new user"""
+
     @classmethod
     def mostrar(cls):
-        """ someting """
+        """someting"""
         with DBConnectionHendler() as db_connection:
             try:
                 return db_connection.session.query(Operacoes).all
@@ -18,7 +19,7 @@ class OperacoesQuerys:
 
     @classmethod
     def novo(cls):
-        """ someting """
+        """someting"""
         with DBConnectionHendler() as db_connection:
             try:
                 return db_connection.session.query(Operacoes).all
@@ -27,4 +28,3 @@ class OperacoesQuerys:
                 raise
             finally:
                 db_connection.session.close()
-                
