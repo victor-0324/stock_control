@@ -1,4 +1,4 @@
-from src.database.config import DBConnectionHendler
+from src.database.config import DBConnectionHendler, db_connector
 from src.database.models import Cliente
 
 
@@ -91,3 +91,16 @@ class DeletarCliente:
                 raise
             finally:
                 db_connection.session.close()
+
+    @classmethod
+    @db_connector
+    def mudar_estado(connection, arg1, arg2=None):
+        
+        cliente = connection.session.query(
+            Cliente).filter_by(name=arg2).first()
+        
+        
+        
+        
+        
+        

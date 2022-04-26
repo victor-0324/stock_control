@@ -8,4 +8,8 @@ class Operacoes(Base):
     operacao = Column(String(80), nullable=False)
     data_hora = Column(String(80))
     cliente = Column(String(80))
-    equipameto = Column(String(80))
+    equipamento = Column(String(80))
+ 
+    def __rep__(self):
+        return f"{self.operacao}, {self.data_hora}, {self.cliente}, {self.equipameto}"
+        

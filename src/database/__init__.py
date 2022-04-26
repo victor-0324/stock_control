@@ -1,4 +1,4 @@
 """ Dander Init """
 
 from .base import Base
-from .config import DBConnectionHendler
+from .config import DBConnectionHendler, db_connector

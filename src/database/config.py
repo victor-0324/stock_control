@@ -27,3 +27,19 @@ class DBConnectionHendler:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.session.close()  # pylint: disable=no-member
+
+def db_connector(func):
+    """ Fornece uma conexão com o banco de dados
+    connector: é um instancia de session configuradapor DBConnectionHendler
+    """
+    def with_connection_(*args, **kwargs):
+        with DBConnectionHendler() as connection:
+            try:
+                query = func(connection, *args, **kwargs)
+                return query
+            except:
+                connection.session.rollback()
+                raise
+            finally:
+                connection.session.close()
+    return with_connection_
