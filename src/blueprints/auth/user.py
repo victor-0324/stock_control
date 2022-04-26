@@ -1,4 +1,4 @@
-# variavel global 
+# variavel global
 class User:
     def __init__(self, id, username, password):
         self.id = id
@@ -6,6 +6,4 @@ class User:
         self.password = password
 
     def __repr__(self):
-        return f'<User: {self.username}>'
-
- 
+        return f"<User: {self.username}>"

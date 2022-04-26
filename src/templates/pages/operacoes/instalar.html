@@ -7,8 +7,8 @@
         </button>
 
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Novo Cliente</a>
-        <a class="dropdown-item" href="/clientes/deletar/">Novo Equipamento</a>
+        <a class="dropdown-item" href="/operacoes/instalar/novo/cliente">Novo Cliente</a>
+        <a class="dropdown-item" href="/operacoes/instalar/novo/equipamento">Novo Equipamento</a>
     </div>
 </div>
 {% endmacro %}
@@ -17,14 +17,14 @@
 
 <div class="row">
     <label for="">Selecione um Cliente</label>
-    {{ select(clientes_disponiveis, name="Selecione um Cliete") }}
+    {{ select(clientes_disponiveis, name="cliente") }}
 </div>
 
 <br>
 
 <div class="row">
     <label for="">Selecione um Equipamento</label>
-    {{ select(equipamentos_disponiveis, name="Selecione um Equipamento") }}
+    {{ select(equipamentos_disponiveis, name="equipamento") }}
     <div class="row">
     </div>
 </div>
@@ -33,7 +33,7 @@
     <label for="exampleInputFile">Adcione uma Foto</label>
     <div class="input-group">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="exampleInputFile">
+            <input type="file" class="custom-file-input" id="imagem" name="imagem">
             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
     </div>
@@ -54,8 +54,6 @@
 
         card_body=_body(),
         card_tools=_tools(),
-
-
 
         card_footer=buttons(
             button_type="subit",

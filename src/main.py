@@ -4,11 +4,11 @@ from flask import Flask
 
 
 def init_app():
-    """ Contruindo o app """
+    """Contruindo o app"""
     app = Flask(__name__)
 
     # Configuração do app
-    app.secret_key = 'vitorvitoriaeyaramariaauvesdacosta'
+    app.secret_key = "vitorvitoriaeyaramariaauvesdacosta"
 
     # Database
     from .database import DBConnectionHendler
@@ -21,18 +21,22 @@ def init_app():
 
         # Aplicativo de autenticação
         from .blueprints import auth_app
+
         app.register_blueprint(auth_app)
 
-        # Aplicativo dos equipamentos 
+        # Aplicativo dos equipamentos
         from .blueprints import equipamentos_app
+
         app.register_blueprint(equipamentos_app)
 
-        # Aplicativo de configuração dos clientes 
+        # Aplicativo de configuração dos clientes
         from .blueprints import clientes_app
+
         app.register_blueprint(clientes_app)
 
         # Aplicativo de configuração das instalação
         from .blueprints import operacoes_app
+
         app.register_blueprint(operacoes_app)
 
         # Criando a enginer

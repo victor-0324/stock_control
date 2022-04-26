@@ -7,22 +7,22 @@
     <thead>
         <tr>
             <th class="col-1">ID</th>
-            <th class="col-3">Tecnico Reponsavel</th>
-            <th class="col-3">Cliente</th>
-            <th class="col-2">Operação</th>
+            <th class="col-3">Operação</th>
+            <th class="col-2">Cliente</th>
+            <th class="col-2">Equipamento</th>
             <th class="col-3">Data e Hora</th>
             <th class="col-1">Ações</th>
         </tr>
     </thead>
 
     <tbody>
-        {% for cliente in clientes %}
+        {% for operacao in operacoes %}
         <tr>
-            <td>{{ cliente.id }}</td>
-            <td>{{ cliente.modelo }}</td>
-            <td>{{ cliente.estado }}</td>
-            <td>{{ cliente.cliente }}</td>
-            <td>{{ cliente.data }}</td>
+            <td>{{ operacao.id }}</td>
+            <td>{{ operacao.operacao }}</td>
+            <td>{{ operacao.cliente }}</td>
+            <td>{{ operacao.equipamento }}</td>
+            <td>{{ operacao.data_hora }}</td>
             <td>
                 <div class="input-group-prepend float-right">
                     <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
@@ -30,8 +30,7 @@
                         </button>
 
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Editar</a>
-                        <a class="dropdown-item" href="/clientes/deletar/{{cliente.id}}">Deletar</a>
+                        <a class="dropdown-item" href="/operacoes/detalhes/{{operacao.id}}">Detalhes</a>
                     </div>
                 </div>
             </td>
