@@ -1,9 +1,7 @@
-{% extends 'base.html' %} 
-
-{% macro _tools() %}
+{% extends 'base.html' %} {% macro _tools() %}
 <div class="input-group-prepend float-right">
     <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-            Action
+           Adicionar
         </button>
 
     <div class="dropdown-menu">
@@ -11,20 +9,16 @@
         <a class="dropdown-item" href="/operacoes/instalar/novo/equipamento">Novo Equipamento</a>
     </div>
 </div>
-{% endmacro %}
-
-{% macro _body() %}
+{% endmacro %} {% macro _body() %}
 
 <div class="row">
-    <label for="">Selecione um Cliente</label>
-    {{ select(clientes_disponiveis, name="cliente") }}
+    <label for="">Selecione um Cliente</label> {{ select(clientes_disponiveis, name="cliente") }}
 </div>
 
 <br>
 
 <div class="row">
-    <label for="">Selecione um Equipamento</label>
-    {{ select(equipamentos_disponiveis, name="equipamento") }}
+    <label for="">Selecione um Equipamento</label> {{ select(equipamentos_disponiveis, name="equipamento") }}
     <div class="row">
     </div>
 </div>
@@ -38,33 +32,10 @@
         </div>
     </div>
 </div>
-    
-    <br>
-    
-{% endmacro %}
 
-
-
-{% macro mostrar() %}
+<br> {% endmacro %} {% macro mostrar() %}
 <div class="col">
 
-    {{card_primary(
-
-        title="Instalar", 
-
-        card_body=_body(),
-        card_tools=_tools(),
-
-        card_footer=buttons(
-            button_type="subit",
-            _class="btn-default float-right",
-            button_text="Voltar"),
-        is_form=True,
-        form_action=""
-        )}}
+    {{card_primary( title="Instalar", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Instalar"), is_form=True, form_action="" )}}
 </div>
-{% endmacro %}
-
-{% block content %}
-{{ wrapper_content(mostrar()) }}
-{% endblock %}
+{% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

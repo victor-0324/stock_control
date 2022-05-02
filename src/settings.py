@@ -5,10 +5,12 @@ esteremos utilizando objetos com diferentes propriedades para
 cada ambiente. Para setar esse ambiente va para
 """
 
+
 import os
+
 
 # Constantes de Diretorios do Programa
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 FONT_PATH = os.path.join(PROJECT_PATH, "")
-IMAGE_PATH = os.path.join(PROJECT_PATH, "media/")
+IMAGE_PATH = os.path.join(PROJECT_PATH, "src/static/media/")
 OPERACOES_PATH = os.path.join(IMAGE_PATH, "operacoes/")

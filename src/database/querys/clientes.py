@@ -1,3 +1,6 @@
+# pylint: disable=unused-argument, no-member, arguments-differ, undefined-variable
+
+from typing import List
 from src.database.config import DBConnectionHendler, db_connector
 from src.database.models import Cliente
 
@@ -70,9 +73,8 @@ class ClientesQuerys:
                 db_connection.session.close()
 
 
-class DeletarCliente:
-    """Create a new user"""
 
+    """Create a new user"""
     @classmethod
     def deletar(cls, cliente_id):
         """someting"""
@@ -94,11 +96,13 @@ class DeletarCliente:
 
     @classmethod
     @db_connector
-    def mudar_estado(connection, arg1, arg2=None):
+    def mudar_estado(cls, connection, arg1):
         
-        cliente = connection.session.query(
-            Cliente).filter_by(name=arg2).first()
-        
+        cliente = connection.session.query(Cliente).filter_by(equipamento=arg1).first()
+       
+        connection.session.update(cliente)
+        connection.session.commit()
+
         
         
         

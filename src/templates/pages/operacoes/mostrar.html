@@ -1,17 +1,14 @@
-{% extends 'base.html' %} 
-
-
-
-{% macro _body() %}
+{% extends 'base.html' %} {% macro _body() %}
 <table class="table table-head-fixed table-striped text-center table-responsive">
     <thead>
         <tr>
             <th class="col-1">ID</th>
-            <th class="col-3">Operação</th>
-            <th class="col-2">Cliente</th>
-            <th class="col-2">Equipamento</th>
-            <th class="col-3">Data e Hora</th>
-            <th class="col-1">Ações</th>
+            <th class="col-2">Operação</th>
+            <th class="col-3">Cliente</th>
+            <th class="col-4">Equipamento</th>
+            <th class="col-5">Data e Hora</th>
+            <th class="col-6">Ações</th>
+
         </tr>
     </thead>
 
@@ -23,14 +20,17 @@
             <td>{{ operacao.cliente }}</td>
             <td>{{ operacao.equipamento }}</td>
             <td>{{ operacao.data_hora }}</td>
+
             <td>
                 <div class="input-group-prepend float-right">
                     <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-                            Action
+                           Ver
                         </button>
 
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/operacoes/detalhes/{{operacao.id}}">Detalhes</a>
+                        <a class="dropdown-item" href="#">Deletar</a>
+
                     </div>
                 </div>
             </td>
@@ -38,27 +38,8 @@
         {% endfor %}
     </tbody>
 </table>
-{% endmacro %}
-
-
-{% macro mostrar() %}
+{% endmacro %} {% macro mostrar() %}
 <div class="col">
-    {{card_primary(
-        title="OS's", 
-
-        card_tools=buttons(
-            link="novo",
-            button_type="button",
-            _class="btn-primary btn-sm",
-            button_text="Nova Ordem de Serviço"),
-
-        card_body=_body()
-        )}}
+    {{card_primary( title="OS's", card_tools=buttons( link="novo", button_type="button", _class="btn-primary btn-sm", button_text="Nova Ordem de Serviço"), card_body=_body() )}}
 </div>
-{% endmacro %}
-
-{% block content %}
-{{ wrapper_content(
-    mostrar()
-) }}
-{% endblock %}
+{% endmacro %} {% block content %} {{ wrapper_content( mostrar() ) }} {% endblock %}

@@ -1,76 +1,60 @@
-{% extends 'base.html' %} 
-
-{% macro _body() %}
+{% extends 'base.html' %} {% macro _body() %}
 <h2>Sejá bem vindo a versão beta do Programa!</h2>
 <h2></h2>
 
 
-{% endmacro %}
-
-
-{% macro mostrar() %}   
+{% endmacro %} {% macro mostrar() %}
 <div class="row">
     <div class="col-lg-4 col-6">
-      <!-- small card -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>150</h3>
+        <!-- small card -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ total }}</h3>
 
-          <h4>Equipaamentos Cadastrados</h4>
-        </div>
-        <div class="icon">
-          <i class="fas fa-shopping-cart"></i>
-        </div>
-        <a href="#" class="small-box-footer">
+                <h4>Equipamentos<br>Cadastrados</h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <a href="/equipamentos" class="small-box-footer">
           Mais Informações <i class="fas fa-arrow-circle-right"></i>
         </a>
-      </div>
+        </div>
     </div>
 
     <div class="col-lg-4  col-6">
         <!-- small card -->
         <div class="small-box bg-danger">
-          <div class="inner">
-            <h3>44</h3>
-  
-            <h4>Clientes Cadastrados</h4>
-          </div>
-          <div class="icon">
-            <i class="fas fa-user-plus"></i>
-          </div>
-          <a href="#" class="small-box-footer">
+            <div class="inner">
+                <h3>{{ total_clientes }}</h3>
+
+                <h4>Clientes<br>Cadastrados</h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <a href="/cliente" class="small-box-footer">
             Mais Informações <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
-      </div>
+    </div>
 
     <div class="col-lg-4 col-6">
-      <!-- small card -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3>53</h3>
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ total_operacoes }}</h3>
 
-          <h4>Ordens de Serviço</h4>
-        </div>
-        <div class="icon">
-          <i class="fas fa-flag"></i>
-        </div>
-        <a href="#" class="small-box-footer">
+                <h4>Ordens de Serviço</h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-flag"></i>
+            </div>
+            <a href="operacoes" class="small-box-footer">
           Mais Informações <i class="fas fa-arrow-circle-right"></i>
         </a>
-      </div>
+        </div>
     </div>
- 
+
 </div>
-{{card_primary(
-
-
-    
-    card_body=_body(),
-    _class="text-center"
-    )}}
-{% endmacro %}
-
-{% block content %}
-{{ wrapper_content(mostrar()) }}
-{% endblock %}
+{{card_primary( card_body=_body(), _class="text-center" )}} {% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

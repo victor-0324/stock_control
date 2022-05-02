@@ -11,9 +11,12 @@ def mostrar_cliente():
     today = datetime.now().strftime("%d/%m/%Y")
     clientes = ClientesQuerys.mostrar()
     total = len(clientes)
-    print(type(clientes))
+    
     return render_template(
-        "/pages/cliente/mostrar.html", clientes=clientes, total=total, today=today
+        "/pages/cliente/mostrar.html", 
+        clientes=clientes, 
+        total=total, 
+        today=today
     )
 
 
@@ -22,7 +25,6 @@ def novo():
     if request.method == "POST":
         nome = request.form["name"]
         date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-
         ClientesQuerys.criar_cliente(nome.upper(), date_time)
         return redirect(url_for("clientes_app.mostrar_cliente"))
     return render_template("/pages/cliente/novo.html")
@@ -37,6 +39,5 @@ def editar(id_cliente):
 
 @clientes_app.route("/deletar/<int:id_cliente>", methods=["GET", "POST"])
 def deletar(id_cliente):
-
     ClientesQuerys.deletar(id_cliente)
     return redirect(url_for("clientes_app.mostrar_cliente"))

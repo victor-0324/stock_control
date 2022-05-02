@@ -1,8 +1,4 @@
-{% extends 'base.html' %} 
-
-
-
-{% macro _body() %}
+{% extends 'base.html' %} {% macro _body() %}
 <table class="table table-head-fixed table-striped text-center table-responsive">
     <thead>
         <tr>
@@ -12,6 +8,7 @@
             <th class="col-2">Estado</th>
             <th class="col-3">Ultima Atualização</th>
             <th class="col-1">Ações</th>
+
         </tr>
     </thead>
 
@@ -23,6 +20,7 @@
             <td>{{ equipamento.cliente }}</td>
             <td>{{ equipamento.estado }}</td>
             <td>{{ equipamento.data }}</td>
+
             <td>
                 <div class="input-group-prepend float-right">
                     <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
@@ -37,29 +35,11 @@
             </td>
         </tr>
         {% endfor %}
+
     </tbody>
 </table>
-{% endmacro %}
-
-
-{% macro mostrar() %}
+{% endmacro %} {% macro mostrar() %}
 <div class="col">
-    {{card_primary(
-        title="Estoque", 
-
-        card_tools=buttons(
-            link="novo",
-            button_type="button",
-            _class="btn-primary btn-sm",
-            button_text="Cadastrar"),
-
-        card_body=_body()
-        )}}
+    {{card_primary( title="Estoque", card_tools=buttons( link="novo", button_type="button", _class="btn-primary btn-sm", button_text="Cadastrar"), card_body=_body() )}}
 </div>
-{% endmacro %}
-
-{% block content %}
-{{ wrapper_content(
-    mostrar()
-) }}
-{% endblock %}
+{% endmacro %} {% block content %} {{ wrapper_content( mostrar() ) }} {% endblock %}

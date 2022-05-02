@@ -1,13 +1,14 @@
-"""Rotas de Operações"""
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter
 
+"""Rotas de Operações"""
 
 import os
 from flask import Blueprint, request, render_template, url_for, redirect
 from src.database.models import operacoes
 from src.database.querys import OperacoesQuerys, ClientesQuerys, EquipamentosQuerys
 from datetime import datetime
+from src.settings import IMAGE_PATH, OPERACOES_PATH
 
-from src.senting import IMAGE_PATH, OPERACOES_PATH
 
 operacoes_app = Blueprint("operacoes_app", __name__, url_prefix="/operacoes")
 
@@ -28,7 +29,15 @@ def novo():
 def detalhes(os_id):
     """Nova Operação"""
     operacao = OperacoesQuerys.get_by_id(os_id)
+    print(operacao)
     return render_template("/pages/operacoes/detalhes.html", operacao=operacao)
+
+@operacoes_app.route("/deletar/<os_id>", methods=["GET", "POST"])
+def deletar(os_id):
+    """Nova Operação"""
+    OperacoesQuerys.deletar(os_id)
+    return redirect(url_for("operacoes_app.mostrar"))
+    
 
 @operacoes_app.route("/instalar", methods=["GET", "POST"])
 def instalar():
@@ -37,14 +46,15 @@ def instalar():
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
         date_time = datetime.now().strftime("%d/%m/%Y")
-        
         imagem = request.files.get("imagem")
-        OperacoesQuerys.instalar((cliente, equipamento, date_time))
+        OperacoesQuerys.instalar(cliente, equipamento, date_time)
+       
         operacao = OperacoesQuerys.mostrar()[-1]
+        
         imagem.save(
             os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
-        )
-        ClientesQuerys.mudar_estado()
+        ) 
+        # ClientesQuerys.mudar_estado(equipamento)
         return redirect(url_for("operacoes_app.mostrar"))
         
 
@@ -58,8 +68,7 @@ def instalar():
         for equipamento in EquipamentosQuerys.mostrar()
         if equipamento.estado == "Estoque"
     ]
-    print(equipamentos)
-
+    
     return render_template(
         "/pages/operacoes/instalar.html",
         clientes_disponiveis=clientes,
@@ -80,7 +89,7 @@ def retirar():
     """Faz a retirada de um equipamento"""
     if request.method == "POST":
         ...
-
+        
     return render_template("/pages/operacoes/retirar.html")
 
 
@@ -91,9 +100,9 @@ def instalar_novo_cliente():
     if request.method == "POST":
         nome = request.form["name"]
         date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-
         ClientesQuerys.criar_cliente(nome.upper(), date_time)
         return redirect(url_for("operacoes_app.instalar"))
+
     return render_template("/pages/cliente/novo.html")
 
 

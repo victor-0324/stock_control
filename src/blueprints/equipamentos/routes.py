@@ -14,6 +14,7 @@ def mostrar():
     today = datetime.now().strftime("%d/%m/%Y")
     equipamentos = EquipamentosQuerys().mostrar()
     total = len(equipamentos)
+    print(total)
     # image = os.listdir('./src/static/media/equipamentos/')
     return render_template(
         "/pages/equipamento/mostrar.html",

@@ -1,7 +1,10 @@
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter
+
 """ Autenticação de usuario """
 
 from flask import Blueprint, request, session, render_template, g, redirect, url_for
 from .user import User
+from src.database.querys import EquipamentosQuerys, ClientesQuerys, OperacoesQuerys
 
 auth_app = Blueprint(
     "auth_app",
@@ -45,8 +48,14 @@ def login():
 # Tela Iniciarl
 @auth_app.route("/", methods=["GET", "POST"])
 def index():
+    equipamentos = EquipamentosQuerys().mostrar()
+    total = len(equipamentos)
+    clientes = ClientesQuerys.mostrar()
+    total_clientes = len(clientes)
+    operacoes = OperacoesQuerys.mostrar().all()[::-1]
+    total_operacoes = len(operacoes)
     if not g.user:
         # abort(403)
 
         return redirect(url_for("auth_app.login"))
-    return render_template("/pages/equipamento/index.html")
+    return render_template("/pages/equipamento/index.html",total=total,total_clientes=total_clientes,total_operacoes=total_operacoes)

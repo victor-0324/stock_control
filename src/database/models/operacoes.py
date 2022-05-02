@@ -12,4 +12,3 @@ class Operacoes(Base):
  
     def __rep__(self):
         return f"{self.operacao}, {self.data_hora}, {self.cliente}, {self.equipameto}"
-        

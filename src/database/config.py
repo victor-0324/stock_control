@@ -3,12 +3,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from jett import DATABASE_CONNECTION
+
 
 class DBConnectionHendler:
     """Sqlalchemy database connection"""
 
     def __init__(self) -> None:
-        self.__connection_string = "sqlite:///./test.db"
+        self.__connection_string = DATABASE_CONNECTION 
         self.session = None
 
     def get_engine(self):
@@ -32,10 +34,10 @@ def db_connector(func):
     """ Fornece uma conexão com o banco de dados
     connector: é um instancia de session configuradapor DBConnectionHendler
     """
-    def with_connection_(*args, **kwargs):
+    def with_connection_(cls, *args):
         with DBConnectionHendler() as connection:
             try:
-                query = func(connection, *args, **kwargs)
+                query = func(cls, connection, *args)
                 return query
             except:
                 connection.session.rollback()
