@@ -1,32 +1,42 @@
-{% extends 'base.html' %} 
-
-
-
-{% macro _body() %}
-<h2>:( Perdão esta página ainda esta em desenvolvimento!</h2>
-{% endmacro %}
-
-
-{% macro mostrar() %}
-<div class="col">
-
-    {{card_primary(
-
-        title="Exemplo", 
-
-        card_body=_body(),
-
-        card_footer=buttons(
-            button_type="button",
-            link="/operacoes/novo",
-            _class="btn-default float-right",
-            button_text="Voltar"),
-        is_form=True,
-        form_action=""
-        )}}
+{% extends 'base.html' %} {% macro _tools() %}
+<div class="input-group-prepend float-right">
+    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+           Adicionar
+        </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/operacoes/instalar/novo/cliente">Novo Cliente</a>
+        <a class="dropdown-item" href="/operacoes/instalar/novo/equipamento">Novo Equipamento</a>
+    </div>
 </div>
-{% endmacro %}
+{% endmacro %} {% macro _body() %}
 
-{% block content %}
-{{ wrapper_content(mostrar()) }}
-{% endblock %}
+<div class="row">
+    <label for="">Selecione um Cliente</label> {{ select(clientes_disponiveis, name="cliente") }}
+</div>
+
+<br>
+
+<div class="row">
+    <label for="">Selecione um Equipamento</label> {{ select(equipamentos_disponiveis, name="equipamento") }}
+    <div class="row">
+
+    </div>
+</div>
+
+<br>
+<div class="form-group">
+    <label for="exampleInputFile">Adicione uma Foto</label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="imagem" name="imagem">
+            <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
+        </div>
+    </div>
+</div>
+
+<br> {% endmacro %} {% macro mostrar() %}
+<div class="col">
+    <!-- {{card_primary( title="Instalar", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Instalar"), is_form=True, form_action="" )}} -->
+    {{card_primary( title="Retirar", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Retirar"), is_form=True, form_action="" )}}
+</div>
+{% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

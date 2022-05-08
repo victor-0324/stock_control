@@ -1,32 +1,62 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% macro _tools() %}
+<div class="input-group-prepend float-right">
+    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+           Adicionar
+        </button>
 
-
-
-{% macro _body() %}
-<h2>:( Perdão esta página ainda esta em desenvolvimento!</h2>
-{% endmacro %}
-
-
-{% macro mostrar() %}
-<div class="col">
-
-    {{card_primary(
-
-        title="Exemplo", 
-
-        card_body=_body(),
-
-        card_footer=buttons(
-            button_type="button",
-            link="/operacoes/novo",
-            _class="btn-default float-right",
-            button_text="Voltar"),
-        is_form=True,
-        form_action=""
-        )}}
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/operacoes/instalar/novo/cliente">Novo Cliente</a>
+        <a class="dropdown-item" href="/operacoes/instalar/novo/equipamento">Novo Equipamento</a>
+    </div>
 </div>
-{% endmacro %}
+{% endmacro %} {% macro _body() %}
 
-{% block content %}
-{{ wrapper_content(mostrar()) }}
-{% endblock %}
+<div class="row">
+    <label for="">Selecione um Cliente</label> {{ select(clientes_disponiveis, name="cliente") }}
+</div>
+
+<br>
+
+<div class="row">
+    <label for="">Equipamento que vai ser trocado</label> {{ select(equipamentos_disponiveis, name="equipamento") }}
+</div>
+
+<br>
+
+<div class="row">
+    <label for="">Equipamento que vai ser usado na troca</label> {{ select(equipamentos_para_trocar, name="equipamentoss") }}
+</div>
+
+<br>
+
+<div class="form-group">
+    <label>Motivo da troca</label>
+    <lt-mirror style="display: none;" contenteditable="false">
+        <lt-highlighter style="display: none;" contenteditable="false">
+            <lt-div spellcheck="false" class="lt-highlighter__wrapper" style="width: 235px !important; height: 96px !important; transform: none !important; transform-origin: 118.5px 49px 0px !important; margin-top: 33px !important; margin-left: 1px !important;">
+                <lt-div class="lt-highlighter__scroll-element" style="top: 0px !important; left: 0px !important; width: 235px !important; height: 96px !important;"></lt-div>
+            </lt-div>
+        </lt-highlighter>
+        <!-- <lt-div spellcheck="false" class="lt-mirror__wrapper notranslate" style="border-width: 1px !important; border-style: solid !important; direction: ltr !important; font: 400 16px / 24px &quot;Source Sans Pro&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot; !important; font-synthesis: weight style small-caps !important; hyphens: manual !important; letter-spacing: normal !important; line-break: auto !important; margin: 32px 0px 0px !important; padding: 6px 12px !important; text-align: start !important; text-decoration: rgb(73, 80, 87) !important; text-indent: 0px !important; text-rendering: optimizelegibility !important; text-transform: none !important; transform: none !important; transform-origin: 118.5px 49px 0px !important; unicode-bidi: normal !important; white-space: pre-wrap !important; word-spacing: 0px !important; overflow-wrap: break-word !important; writing-mode: horizontal-tb !important; width: 211px !important; height: 84px !important;" -->
+        <!-- data-lt-scroll-top="0" data-lt-scroll-left="0" data-lt-scroll-top-scaled="0" data-lt-scroll-left-scaled="0" data-lt-scroll-top-scaled-and-zoomed="0" data-lt-scroll-left-scaled-and-zoomed="0"> -->
+        <lt-div class="lt-mirror__canvas" style="margin-top: 0px !important; margin-left: 0px !important; width: 211px !important; height: 84px !important;"></lt-div>
+        </lt-div>
+        <lt-div class="lt-mirror__measurer"></lt-div>
+    </lt-mirror><textarea class="form-control" type="checkbox" rows="3" placeholder="Obs ..." data-lt-tmp-id="lt-784462" spellcheck="false" data-gramm="false" name="obs" style="line-height: 24px;" required></textarea>
+    <br>
+    <div class="form-group">
+        <label for="exampleInputFile">Adicionar Foto</label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="imagem" name="imagem">
+                <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
+            </div>
+        </div>
+    </div>
+
+    <br> {% endmacro %} {% macro mostrar() %}
+    <div class="col">
+
+        {{card_primary( title="Trocar equipamento", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Trocar"), is_form=True, form_action="" )}}
+    </div>
+    {% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

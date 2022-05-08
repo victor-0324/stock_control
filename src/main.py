@@ -17,7 +17,7 @@ def init_app():
     db_connection = DBConnectionHendler()
     engine = db_connection.get_engine()
 
-    with app.app_context():
+    with app.app_context(): 
 
         # Aplicativo de autenticação
         from .blueprints import auth_app

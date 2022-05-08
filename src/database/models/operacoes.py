@@ -7,6 +7,7 @@ class Operacoes(Base):
     id = Column(Integer, primary_key=True)
     operacao = Column(String(80), nullable=False)
     data_hora = Column(String(80))
+    observacao = Column(String(200))
     cliente = Column(String(80))
     equipamento = Column(String(80))
  

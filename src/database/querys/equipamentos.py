@@ -1,4 +1,4 @@
-from src.database.config import DBConnectionHendler
+from src.database.config import DBConnectionHendler, db_connector
 from src.database.models import Equipamentos
 
 
@@ -11,7 +11,7 @@ class EquipamentosQuerys:
         with DBConnectionHendler() as db_connection:
             try:
                 criar_novo_equipamento = Equipamentos(
-                    modelo=modelo.upper(), estado="Estoque", data=data
+                    modelo=modelo.upper(), estado="Estoque",cliente="Nenhum", data=data
                 )
                 db_connection.session.add(criar_novo_equipamento)
                 db_connection.session.commit()
@@ -20,23 +20,6 @@ class EquipamentosQuerys:
                 raise
             finally:
                 db_connection.session.close()
-
-    # """ Create a new user """
-    # @classmethod
-    # def retirar_equipamento(cls, name, data):
-    #     """ someting """
-    #     with DBConnectionHendler() as db_connection:
-    #         try:
-
-    #             cliente = Equipamentos(modelo=name.upper(), estado=1, data=data, equipamento='Retirado')
-
-    #             db_connection.session.add(cliente)
-    #             db_connection.session.commit()
-    #         except:
-    #             db_connection.session.rollback()
-    #             raise
-    #         finally:
-    #             db_connection.session.close()
 
     @classmethod
     def mostrar(cls):
@@ -49,20 +32,6 @@ class EquipamentosQuerys:
                 raise
             finally:
                 db_connection.session.close()
-
-    # """ Create a new user """
-    # @classmethod
-    # def ver_equipamento_id(cls, equipamento_id):
-    #     """ someting """
-    #     with DBConnectionHendler() as db_connection:
-    #         try:
-    #             return db_connection.session.query(Equipamentos).filter_by(id=equipamento_id).first()
-
-    #         except:
-    #             db_connection.session.rollback()
-    #             raise
-    #         finally:
-    #             db_connection.session.close()
 
     @classmethod
     def deletar(cls, equipamento_id):
@@ -81,3 +50,49 @@ class EquipamentosQuerys:
                 raise
             finally:
                 db_connection.session.close()
+
+    @classmethod
+    @db_connector
+    def update_trocar(cls, connection, arg1, arg2):
+        """ someting """
+        query = (connection.session.query(Equipamentos)
+        .filter_by(modelo=arg1)
+        .first()
+        )
+
+        query.estado = "Estoque"
+        query.cliente = "Nenhum"
+        query.data = arg2
+        connection.session.commit()
+
+    @classmethod
+    @db_connector
+    def update(cls, connection, arg1, arg2, arg3):
+        """Atualiza o nome de um exemplo"""
+
+        query = (
+            connection.session.query(Equipamentos)
+            .filter_by(modelo=arg1)
+            .first()
+        )
+        
+        query.estado = "Usando"
+        query.cliente = arg2
+        query.data = arg3
+        connection.session.commit()
+
+    @classmethod
+    @db_connector
+    def update_retirar(cls, connection, arg1, arg3):
+        """Atualiza o nome de um exemplo"""
+
+        query = (
+            connection.session.query(Equipamentos)
+            .filter_by(modelo=arg1)
+            .first()
+        )
+        
+        query.estado = "Estoque"
+        query.cliente = "Nenhum"
+        query.data = arg3
+        connection.session.commit()

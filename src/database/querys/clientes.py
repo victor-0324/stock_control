@@ -14,25 +14,7 @@ class ClientesQuerys:
         with DBConnectionHendler() as db_connection:
             try:
                 cliente = Cliente(
-                    nome=nome.upper(), estado="Ativo", data=data, equipamento="Nenhum"
-                )
-
-                db_connection.session.add(cliente)
-                db_connection.session.commit()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
-
-    @classmethod
-    def retirar_cliente(cls, nome, data):
-        """someting"""
-        with DBConnectionHendler() as db_connection:
-            try:
-
-                cliente = Cliente(
-                    nome=nome.upper(), estado=1, data=data, equipamento="Retirado"
+                    nome=nome.upper(), estado="Esperando", data=data, equipamento="Nenhum"
                 )
 
                 db_connection.session.add(cliente)
@@ -72,9 +54,6 @@ class ClientesQuerys:
             finally:
                 db_connection.session.close()
 
-
-
-    """Create a new user"""
     @classmethod
     def deletar(cls, cliente_id):
         """someting"""
@@ -96,15 +75,35 @@ class ClientesQuerys:
 
     @classmethod
     @db_connector
-    def mudar_estado(cls, connection, arg1):
-        
-        cliente = connection.session.query(Cliente).filter_by(equipamento=arg1).first()
-       
-        connection.session.update(cliente)
-        connection.session.commit()
+    def update(cls, connection, arg1, arg2, arg3):
+        """Atualiza o nome de um exemplo"""
 
+        query = (
+            connection.session.query(Cliente)
+            .filter_by(nome=arg1)
+            .first()
+        )
         
+        query.estado = "Ativo"
+        query.data = arg3
+        query.equipamento = arg2
+        connection.session.commit()
         
+    @classmethod
+    @db_connector
+    def update_retirar(cls, connection, arg1, arg3):
+        """Atualiza o nome de um exemplo"""
+
+        query = (
+            connection.session.query(Cliente)
+            .filter_by(nome=arg1)
+            .first()
+        )
+
+        query.estado = "Retirado"
+        query.data = arg3
+        query.equipamento = "Nenhum"
+        connection.session.commit()
         
         
         

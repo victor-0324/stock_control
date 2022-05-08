@@ -20,7 +20,7 @@ class OperacoesQuerys:
     @classmethod
     @db_connector
     def instalar(cls, connection, cliente, equipamento, data_hora):
-        """Pesquisa um exemplo pelo id"""
+        """ Operação de instalação """
        
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento,
@@ -31,8 +31,33 @@ class OperacoesQuerys:
     
     @classmethod
     @db_connector
+    def retirar(cls, connection, cliente, equipamento, data_hora):
+        """ Fazer operação de retirada """
+       
+        operacao = Operacoes(cliente=cliente,
+                            equipamento=equipamento,
+                            data_hora=data_hora,
+                            operacao="Retirada")
+        connection.session.add(operacao)
+        connection.session.commit() 
+        
+    @classmethod
+    @db_connector
+    def trocar(cls, connection, cliente, equipamento_trocado, data_hora, observacao):
+        """ Operação de trocar o equipamento """
+       
+        operacao = Operacoes(cliente=cliente,
+                            equipamento=equipamento_trocado,
+                            data_hora=data_hora,
+                            observacao=observacao,
+                            operacao="Trocado")
+        connection.session.add(operacao)
+        connection.session.commit()  
+
+    @classmethod
+    @db_connector
     def deletar(cls, connection, arg1):
-        """Pesquisa um exemplo pelo id"""
+        """Deletar uma operação"""
         operacoes = connection.session.query(Operacoes).filter_by(id=arg1).first()
         connection.session.delete(operacoes)
         connection.session.commit()
@@ -42,4 +67,5 @@ class OperacoesQuerys:
     def get_by_id(cls, connection, arg1):
         """Pesquisa um exemplo pelo id"""
         return connection.session.query(Operacoes).filter_by(id=arg1)
+    
     

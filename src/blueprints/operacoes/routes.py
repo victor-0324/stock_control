@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable
 
 """Rotas de Operações"""
 
@@ -45,16 +45,18 @@ def instalar():
     if request.method == "POST":
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
-        date_time = datetime.now().strftime("%d/%m/%Y")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         imagem = request.files.get("imagem")
         OperacoesQuerys.instalar(cliente, equipamento, date_time)
-       
+
         operacao = OperacoesQuerys.mostrar()[-1]
         
         imagem.save(
             os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
         ) 
-        # ClientesQuerys.mudar_estado(equipamento)
+        
+        ClientesQuerys.update(cliente, equipamento, date_time)
+        EquipamentosQuerys.update(equipamento, cliente, date_time)
         return redirect(url_for("operacoes_app.mostrar"))
         
 
@@ -79,21 +81,92 @@ def instalar():
 def trocar():
     """Realiza a troca de um equipamento"""
     if request.method == "POST":
-        ...
 
-    return render_template("/pages/operacoes/trocar.html")
+        observacao = request.form.get("obs")
+        cliente = request.form.get("cliente")
+        equipamento = request.form.get("equipamento")
+        equipamento_trocado = request.form.get("equipamentoss")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        imagem = request.files.get("imagem")
 
+        OperacoesQuerys.trocar(cliente, equipamento_trocado, date_time, observacao)
+        operacao = OperacoesQuerys.mostrar()[-1]
+        
+        imagem.save(
+            os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
+        ) 
+        
 
+        ClientesQuerys.update(cliente, equipamento_trocado, date_time)
+        EquipamentosQuerys.update_trocar(equipamento, date_time)
+        EquipamentosQuerys.update(equipamento_trocado, cliente, date_time)
+        return redirect(url_for("operacoes_app.mostrar"))
+        
+
+    clientes = [
+        cliente.nome
+        for cliente in ClientesQuerys.mostrar()
+        if cliente.equipamento != "Nenhum"
+    ]
+    equipamentos = [
+        equipamento.modelo
+        for equipamento in EquipamentosQuerys.mostrar()
+        if equipamento.estado == "Usando"
+    ]
+    equipamentoss = [
+        equipamento.modelo
+        for equipamento in EquipamentosQuerys.mostrar()
+        if equipamento.estado == "Estoque"
+    ]
+    
+    return render_template(
+        "/pages/operacoes/trocar.html",
+        clientes_disponiveis=clientes,
+        equipamentos_disponiveis=equipamentos,
+        equipamentos_para_trocar=equipamentoss,
+    )
+
+    
 @operacoes_app.route("/retirar", methods=["GET", "POST"])
 def retirar():
     """Faz a retirada de um equipamento"""
     if request.method == "POST":
-        ...
+       
+        cliente = request.form.get("cliente")
+        equipamento = request.form.get("equipamento")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        imagem = request.files.get("imagem")
+        OperacoesQuerys.retirar(cliente, equipamento, date_time)
+       
+        operacao = OperacoesQuerys.mostrar()[-1]
         
-    return render_template("/pages/operacoes/retirar.html")
+        imagem.save(
+            os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
+        )  
+        
+        ClientesQuerys.update_retirar(cliente, date_time)
+        EquipamentosQuerys.update_retirar(equipamento,  date_time)
+        return redirect(url_for("operacoes_app.mostrar"))
+        
 
+    clientes = [
+        cliente.nome
+        for cliente in ClientesQuerys.mostrar()
+        if cliente.equipamento != "Nenhum"
+    ]
+    equipamentos = [
+        equipamento.modelo
+        for equipamento in EquipamentosQuerys.mostrar()
+        if equipamento.estado == "Usando"
+    ]
+    
+    return render_template(
+        "/pages/operacoes/retirar.html",
+        clientes_disponiveis=clientes,
+        equipamentos_disponiveis=equipamentos,
+    )
 
-
+        
 @operacoes_app.route("/instalar/novo/cliente", methods=["GET", "POST"])
 def instalar_novo_cliente():
     """Cria um novo cliente"""
@@ -104,7 +177,6 @@ def instalar_novo_cliente():
         return redirect(url_for("operacoes_app.instalar"))
 
     return render_template("/pages/cliente/novo.html")
-
 
 @operacoes_app.route("/instalar/novo/equipamento", methods=["GET", "POST"])
 def instalar_novo_equipamento():
