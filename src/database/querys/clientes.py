@@ -9,33 +9,26 @@ class ClientesQuerys:
     """Create a new user"""
 
     @classmethod
-    def criar_cliente(cls, nome, data):
+    @db_connector
+    def criar_cliente(cls,connection, nome, data):
         """someting"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                cliente = Cliente(
-                    nome=nome.upper(), estado="Esperando", data=data, equipamento="Nenhum"
-                )
+        
+        cliente = Cliente(
+            nome=nome.upper(), 
+            estado="Esperando", 
+            data=data, 
+            equipamento="Nenhum"
+        )
 
-                db_connection.session.add(cliente)
-                db_connection.session.commit()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
-
+        connection.session.add(cliente)
+        connection.session.commit()
+          
     @classmethod
-    def mostrar(cls):
+    @db_connector
+    def mostrar(cls, connection) -> List:
         """Retorna uma lista de todos os clientes"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                return db_connection.session.query(Cliente).all()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
+        cliente = connection.session.query(Cliente).all()
+        return cliente
 
     @classmethod
     def ver_cliente_id(cls, cliente_id):
@@ -55,29 +48,22 @@ class ClientesQuerys:
                 db_connection.session.close()
 
     @classmethod
-    def deletar(cls, cliente_id):
+    @db_connector
+    def deletar(cls, connection, arg1):
         """someting"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                cliente = (
-                    db_connection.session.query(Cliente)
-                    .filter_by(id=cliente_id)
-                    .first()
-                )
-                db_connection.session.delete(cliente)
-                db_connection.session.commit()
 
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
+        cliente = (
+            connection.session.query(Cliente)
+            .filter_by(id=arg1)
+            .first()
+        )
+        connection.session.delete(cliente)
+        connection.session.commit()
 
     @classmethod
     @db_connector
     def update(cls, connection, arg1, arg2, arg3):
         """Atualiza o nome de um exemplo"""
-
         query = (
             connection.session.query(Cliente)
             .filter_by(nome=arg1)

@@ -6,50 +6,38 @@ class EquipamentosQuerys:
     """Create a new user"""
 
     @classmethod
-    def novo(cls, modelo, data):
+    @db_connector
+    def novo(cls, connection, modelo, data):
         """someting"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                criar_novo_equipamento = Equipamentos(
-                    modelo=modelo.upper(), estado="Estoque",cliente="Nenhum", data=data
-                )
-                db_connection.session.add(criar_novo_equipamento)
-                db_connection.session.commit()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
+        criar_novo_equipamento = Equipamentos(
+            modelo=modelo.upper(), 
+            estado="Estoque",
+            cliente="Nenhum", 
+            data=data
+        )
+        connection.session.add(criar_novo_equipamento)
+        connection.session.commit()
+            
+    @classmethod
+    @db_connector
+    def mostrar(cls, connection):
+        """ Retorna o estoque """
+        mostrar = connection.session.query(Equipamentos).all()
+        return mostrar
 
     @classmethod
-    def mostrar(cls):
-        """someting"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                return db_connection.session.query(Equipamentos).all()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
-
-    @classmethod
-    def deletar(cls, equipamento_id):
+    @db_connector
+    def deletar(cls, connection, equipamento_id):
         """Deletando um equipamento"""
-        with DBConnectionHendler() as db_connection:
-            try:
-                equipamento = (
-                    db_connection.session.query(Equipamentos)
-                    .filter_by(id=equipamento_id)
-                    .first()
-                )
-                db_connection.session.delete(equipamento)
-                db_connection.session.commit()
-            except:
-                db_connection.session.rollback()
-                raise
-            finally:
-                db_connection.session.close()
+        
+        equipamento = (
+            connection.session.query(Equipamentos)
+            .filter_by(id=equipamento_id)
+            .first()
+        )
+        connection.session.delete(equipamento)
+        connection.session.commit()
+            
 
     @classmethod
     @db_connector
