@@ -24,7 +24,7 @@ def mostrar_cliente():
 def novo():
     if request.method == "POST":
         nome = request.form["name"]
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M")
         ClientesQuerys.criar_cliente(nome.upper(), date_time)
         return redirect(url_for("clientes_app.mostrar_cliente"))
     return render_template("/pages/cliente/novo.html")

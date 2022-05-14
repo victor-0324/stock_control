@@ -43,20 +43,21 @@
         </lt-div>
         <lt-div class="lt-mirror__measurer"></lt-div>
     </lt-mirror><textarea class="form-control" type="checkbox" rows="3" placeholder="Obs ..." data-lt-tmp-id="lt-784462" spellcheck="false" data-gramm="false" name="obs" style="line-height: 24px;" required></textarea>
-    <br>
-    <div class="form-group">
-        <label for="exampleInputFile">Adicionar Foto</label>
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imagem" name="imagem">
-                <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
-            </div>
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputFile">Adicionar Foto</label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="imagem" name="imagem">
+            <label class="custom-file-label" for="exampleInputFile">Escolher arquivo</label>
         </div>
     </div>
+</div>
 
-    <br> {% endmacro %} {% macro mostrar() %}
-    <div class="col">
+<br> {% endmacro %} {% macro mostrar() %}
+<div class="col">
 
-        {{card_primary( title="Trocar equipamento", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Trocar"), is_form=True, form_action="" )}}
-    </div>
-    {% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}
+    {{card_primary( title="Trocar equipamento", card_body=_body(), card_tools=_tools(), card_footer=buttons( button_type="subit", _class="btn-default float-right", button_text="Trocar"), is_form=True, form_action="" )}}
+</div>
+{% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

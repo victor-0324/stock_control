@@ -19,24 +19,26 @@ class OperacoesQuerys:
 
     @classmethod
     @db_connector
-    def instalar(cls, connection, cliente, equipamento, data_hora):
+    def instalar(cls, connection, cliente, equipamento, data_hora, observacao):
         """ Operação de instalação """
        
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento,
                             data_hora=data_hora,
+                            observacao=observacao,
                             operacao="Instalação")
         connection.session.add(operacao)
         connection.session.commit() 
     
     @classmethod
     @db_connector
-    def retirar(cls, connection, cliente, equipamento, data_hora):
+    def retirar(cls, connection, cliente, equipamento, data_hora,observacao):
         """ Fazer operação de retirada """
        
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento,
                             data_hora=data_hora,
+                            observacao=observacao,
                             operacao="Retirada")
         connection.session.add(operacao)
         connection.session.commit() 

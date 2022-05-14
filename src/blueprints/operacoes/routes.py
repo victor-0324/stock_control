@@ -9,16 +9,13 @@ from src.database.querys import OperacoesQuerys, ClientesQuerys, EquipamentosQue
 from datetime import datetime
 from src.settings import IMAGE_PATH, OPERACOES_PATH
 
-
 operacoes_app = Blueprint("operacoes_app", __name__, url_prefix="/operacoes")
-
 
 @operacoes_app.route("/", methods=["GET"])
 def mostrar():
     """Mostra todas as operações"""
     operacoes = OperacoesQuerys.mostrar().all()[::-1]
     return render_template("/pages/operacoes/mostrar.html", operacoes=operacoes)
-
 
 @operacoes_app.route("/novo", methods=["GET", "POST"])
 def novo():
@@ -29,7 +26,6 @@ def novo():
 def detalhes(os_id):
     """Nova Operação"""
     operacao = OperacoesQuerys.get_by_id(os_id)
-    print(operacao)
     return render_template("/pages/operacoes/detalhes.html", operacao=operacao)
 
 @operacoes_app.route("/deletar/<os_id>", methods=["GET", "POST"])
@@ -37,7 +33,6 @@ def deletar(os_id):
     """Nova Operação"""
     OperacoesQuerys.deletar(os_id)
     return redirect(url_for("operacoes_app.mostrar"))
-    
 
 @operacoes_app.route("/instalar", methods=["GET", "POST"])
 def instalar():
@@ -45,9 +40,10 @@ def instalar():
     if request.method == "POST":
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        observacao = request.form.get("obs")
+        date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
         imagem = request.files.get("imagem")
-        OperacoesQuerys.instalar(cliente, equipamento, date_time)
+        OperacoesQuerys.instalar(cliente, equipamento, date_time, observacao)
 
         operacao = OperacoesQuerys.mostrar()[-1]
         
@@ -59,12 +55,12 @@ def instalar():
         EquipamentosQuerys.update(equipamento, cliente, date_time)
         return redirect(url_for("operacoes_app.mostrar"))
         
-
     clientes = [
         cliente.nome
         for cliente in ClientesQuerys.mostrar()
         if cliente.equipamento == "Nenhum"
     ]
+
     equipamentos = [
         equipamento.modelo
         for equipamento in EquipamentosQuerys.mostrar()
@@ -86,7 +82,7 @@ def trocar():
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
         equipamento_trocado = request.form.get("equipamentoss")
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
         imagem = request.files.get("imagem")
 
         OperacoesQuerys.trocar(cliente, equipamento_trocado, date_time, observacao)
@@ -126,7 +122,6 @@ def trocar():
         equipamentos_para_trocar=equipamentoss,
     )
 
-    
 @operacoes_app.route("/retirar", methods=["GET", "POST"])
 def retirar():
     """Faz a retirada de um equipamento"""
@@ -134,9 +129,10 @@ def retirar():
        
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        observacao = request.form.get("obs")
+        date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
         imagem = request.files.get("imagem")
-        OperacoesQuerys.retirar(cliente, equipamento, date_time)
+        OperacoesQuerys.retirar(cliente, equipamento, date_time, observacao)
        
         operacao = OperacoesQuerys.mostrar()[-1]
         
@@ -166,7 +162,6 @@ def retirar():
         equipamentos_disponiveis=equipamentos,
     )
 
-        
 @operacoes_app.route("/instalar/novo/cliente", methods=["GET", "POST"])
 def instalar_novo_cliente():
     """Cria um novo cliente"""

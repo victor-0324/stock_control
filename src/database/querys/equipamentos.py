@@ -60,7 +60,7 @@ class EquipamentosQuerys:
 
         query = (
             connection.session.query(Equipamentos)
-            .filter_by(modelo=arg1)
+            .filter_by(modelo=arg1) 
             .first()
         )
         

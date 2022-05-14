@@ -1,3 +1,6 @@
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable
+
+
 """ Aplicação de Controle de estoque """
 
 from flask import Blueprint, request, render_template, url_for, redirect
@@ -29,7 +32,7 @@ def novo():
     """Cria um novo equipamento no sistema"""
     if request.method == "POST":
         mensagem = request.form.get("name")
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
         EquipamentosQuerys.novo(mensagem, date_time)
         return redirect(url_for("equipamentos_app.mostrar"))
     return render_template("/pages/equipamento/novo.html")
@@ -44,7 +47,6 @@ def editar(id_equipamento):
 @equipamentos_app.route("/deletar/<int:id_equipamento>", methods=["GET", "POST"])
 def deletar(id_equipamento):
     """Deleta um equipamento"""
-    print(id_equipamento)
     EquipamentosQuerys.deletar(id_equipamento)
     return redirect(url_for("equipamentos_app.mostrar"))
     # return render_template('equipamentos.html')
