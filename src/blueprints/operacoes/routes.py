@@ -24,29 +24,29 @@ def novo():
 
 @operacoes_app.route("/detalhes/<os_id>", methods=["GET", "POST"])
 def detalhes(os_id):
-    """Nova Operação"""
+    """ Detalhes de uma operação """
     operacao = OperacoesQuerys.get_by_id(os_id)
+    print(type(operacao))
     return render_template("/pages/operacoes/detalhes.html", operacao=operacao)
 
 @operacoes_app.route("/deletar/<os_id>", methods=["GET", "POST"])
 def deletar(os_id):
-    """Nova Operação"""
+    """ Deletar uma operação """
     OperacoesQuerys.deletar(os_id)
     return redirect(url_for("operacoes_app.mostrar"))
 
 @operacoes_app.route("/instalar", methods=["GET", "POST"])
 def instalar():
-    """Realiza a instalação de um equipamento"""
+    """ Realiza a instalação de um equipamento """
     if request.method == "POST":
         cliente = request.form.get("cliente")
         equipamento = request.form.get("equipamento")
         observacao = request.form.get("obs")
         date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
-        imagem = request.files.get("imagem")
         OperacoesQuerys.instalar(cliente, equipamento, date_time, observacao)
 
+        imagem = request.files.get("imagem")
         operacao = OperacoesQuerys.mostrar()[-1]
-        
         imagem.save(
             os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
         ) 

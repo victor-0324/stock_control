@@ -1,3 +1,5 @@
+# pylint: disable=unused-argument, no-member, arguments-differ, undefined-variable
+
 from src.database.config import DBConnectionHendler, db_connector
 from src.database.models import Equipamentos
 
@@ -20,10 +22,10 @@ class EquipamentosQuerys:
             
     @classmethod
     @db_connector
-    def mostrar(cls, connection):
+    def mostrar(cls, connection): 
         """ Retorna o estoque """
-        mostrar = connection.session.query(Equipamentos).all()
-        return mostrar
+        mostrar = connection.session.query(Equipamentos)
+        return mostrar 
 
     @classmethod
     @db_connector

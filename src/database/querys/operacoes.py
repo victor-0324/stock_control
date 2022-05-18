@@ -52,7 +52,7 @@ class OperacoesQuerys:
                             equipamento=equipamento_trocado,
                             data_hora=data_hora,
                             observacao=observacao,
-                            operacao="Trocado")
+                            operacao="Troca")
         connection.session.add(operacao)
         connection.session.commit()  
 

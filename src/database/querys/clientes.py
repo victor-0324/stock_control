@@ -25,10 +25,11 @@ class ClientesQuerys:
           
     @classmethod
     @db_connector
-    def mostrar(cls, connection) -> List:
+    def mostrar(cls, connection):
         """Retorna uma lista de todos os clientes"""
-        cliente = connection.session.query(Cliente).all()
-        return cliente
+        mostrar = connection.session.query(Cliente)
+        return mostrar
+        
 
     @classmethod
     def ver_cliente_id(cls, cliente_id):
