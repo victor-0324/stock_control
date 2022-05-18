@@ -8,7 +8,6 @@ import os
 
 clientes_app = Blueprint("clientes_app", __name__, url_prefix="/cliente")
 
-
 @clientes_app.route("/", methods=["GET"])
 def mostrar_cliente():
     clientes = ClientesQuerys.mostrar().all()[::-1]
