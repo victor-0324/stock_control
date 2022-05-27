@@ -48,13 +48,13 @@ def login():
 # Tela Iniciarl
 @auth_app.route("/", methods=["GET", "POST"])
 def index():
-    equipamentos = EquipamentosQuerys().mostrar()
+    equipamentos = EquipamentosQuerys().mostrar().all()[::-1]
     total = len(equipamentos)
-    clientes = ClientesQuerys.mostrar()
+    clientes = ClientesQuerys.mostrar().all()[::-1]
     total_clientes = len(clientes)
     operacoes = OperacoesQuerys.mostrar().all()[::-1]
     total_operacoes = len(operacoes)
-    if not g.user:
+    if not g.user: 
         # abort(403)
 
         return redirect(url_for("auth_app.login"))

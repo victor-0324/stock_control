@@ -15,7 +15,7 @@ class ClientesQuerys:
         
         cliente = Cliente(
             nome=nome.upper(), 
-            estado="Esperando", 
+            estado="Estoque", 
             data=data, 
             equipamento="Nenhum"
         )
