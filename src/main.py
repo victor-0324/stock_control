@@ -20,9 +20,14 @@ def init_app():
     with app.app_context(): 
 
         # Aplicativo de autenticação
-        from .blueprints import auth_app
+        from .blueprints import auth
 
-        app.register_blueprint(auth_app)
+        app.register_blueprint(auth)
+
+        # Aplicativo inicial
+        from .blueprints import initial_app
+
+        app.register_blueprint(initial_app)
 
         # Aplicativo dos equipamentos
         from .blueprints import equipamentos_app
@@ -39,6 +44,7 @@ def init_app():
 
         app.register_blueprint(operacoes_app)
 
+        # Criando tabelas que não existem e estão
         # Criando a enginer
         Base.metadata.create_all(engine)
 

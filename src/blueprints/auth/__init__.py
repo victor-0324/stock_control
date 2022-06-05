@@ -1,1 +1,1 @@
-from .routes import auth_app
+from .routes import auth

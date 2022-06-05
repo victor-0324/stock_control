@@ -7,7 +7,7 @@ from flask import Blueprint, request, render_template, url_for, redirect
 from src.database.models import operacoes
 from src.database.querys import OperacoesQuerys, ClientesQuerys, EquipamentosQuerys
 from datetime import datetime
-from src.settings import IMAGE_PATH, OPERACOES_PATH
+from src.settings import Config
 
 operacoes_app = Blueprint("operacoes_app", __name__, url_prefix="/operacoes")
 
@@ -48,7 +48,7 @@ def instalar():
         imagem = request.files.get("imagem")
         operacao = OperacoesQuerys.mostrar()[-1]
         imagem.save(
-            os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
+            os.path.join(Config, f"{operacao.id}.jpg")
         ) 
         
         ClientesQuerys.update(cliente, equipamento, date_time)
@@ -89,7 +89,7 @@ def trocar():
         operacao = OperacoesQuerys.mostrar()[-1]
         
         imagem.save(
-            os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
+            os.path.join(Config, f"{operacao.id}.jpg")
         ) 
         
 
@@ -137,7 +137,7 @@ def retirar():
         operacao = OperacoesQuerys.mostrar()[-1]
         
         imagem.save(
-            os.path.join(OPERACOES_PATH, f"{operacao.id}.jpg")
+            os.path.join(Config, f"{operacao.id}.jpg")
         )  
         
         ClientesQuerys.update_retirar(cliente, date_time)
