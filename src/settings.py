@@ -18,11 +18,7 @@ class Config:
     user_dir= join('/home', getpass.getuser(),'vars_apps','.env_erp_mobilidade')
     load_dotenv(user_dir)
 
-    # Constantes de Diretorios do Programa
-    PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
-    FONT_PATH = os.path.join(PROJECT_PATH, "")
-    IMAGE_PATH = os.path.join(PROJECT_PATH, "src/static/media/")
-    OPERACOES_PATH = os.path.join(IMAGE_PATH, "operacoes/")
+    
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOAD_FOLDER = '/media'
@@ -46,4 +42,8 @@ class ProductionConfig(Config):
     DEBUG = False
 
 
-
+# Constantes de Diretorios do Programa
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+FONT_PATH = os.path.join(PROJECT_PATH, "")
+IMAGE_PATH = os.path.join(PROJECT_PATH, "src/static/media/")
+OPERACOES_PATH = os.path.join(IMAGE_PATH, "operacoes/")

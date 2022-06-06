@@ -7,7 +7,7 @@ from flask import Blueprint, request, render_template, url_for, redirect
 from src.database.models import operacoes
 from src.database.querys import OperacoesQuerys, ClientesQuerys, EquipamentosQuerys
 from datetime import datetime
-from src.settings import Config
+from src.settings import IMAGE_PATH
 
 operacoes_app = Blueprint("operacoes_app", __name__, url_prefix="/operacoes")
 
@@ -48,7 +48,7 @@ def instalar():
         imagem = request.files.get("imagem")
         operacao = OperacoesQuerys.mostrar()[-1]
         imagem.save(
-            os.path.join(Config, f"{operacao.id}.jpg")
+            os.path.join(IMAGE_PATH, f"{operacao.id}.jpg")
         ) 
         
         ClientesQuerys.update(cliente, equipamento, date_time)
@@ -89,7 +89,7 @@ def trocar():
         operacao = OperacoesQuerys.mostrar()[-1]
         
         imagem.save(
-            os.path.join(Config, f"{operacao.id}.jpg")
+            os.path.join(IMAGE_PATH, f"{operacao.id}.jpg")
         ) 
         
 
@@ -137,7 +137,7 @@ def retirar():
         operacao = OperacoesQuerys.mostrar()[-1]
         
         imagem.save(
-            os.path.join(Config, f"{operacao.id}.jpg")
+            os.path.join(IMAGE_PATH, f"{operacao.id}.jpg")
         )  
         
         ClientesQuerys.update_retirar(cliente, date_time)
@@ -167,7 +167,7 @@ def instalar_novo_cliente():
     """Cria um novo cliente"""
     if request.method == "POST":
         nome = request.form["name"]
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M")
         ClientesQuerys.criar_cliente(nome.upper(), date_time)
         return redirect(url_for("operacoes_app.instalar"))
 
@@ -178,7 +178,7 @@ def instalar_novo_equipamento():
     """Cria um novo equipamento no sistema"""
     if request.method == "POST":
         mensagem = request.form.get("name")
-        date_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        date_time = datetime.now().strftime("%d/%m/%Y %H:%M")
         EquipamentosQuerys.novo(mensagem, date_time)
         return redirect(url_for("operacoes_app.instalar"))
     return render_template("/pages/equipamento/novo.html")

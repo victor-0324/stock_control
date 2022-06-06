@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{url_for('static', filename='/login.css')}}">
 
-    <title>Login</title>
+    <title>Registro</title>
 </head>
 
 <body>
@@ -15,7 +15,11 @@
     <div id="login">
         <form action="" class="card" method="post">
             <div class="card-header">
-                <h2>Login</h2>
+                <h2>Registre-se</h2>
+            </div>
+            <div class="card-content-area">
+                <label for="password">Nome</label>
+                <input type="name" name="name" placeholder="Nome">
             </div>
             <div class="card-content-area">
                 <div class="card-content-area">
@@ -29,9 +33,9 @@
             </div>
             <div class="card-footer">
                 <input type="submit" class="submit" value="Logar">
-                <a href="#" class="recuperar_senha">Esqueceu a senha?</a>
+                <!-- <a href="#" class="recuperar_senha">Esqueceu a senha?</a>
 
-                <a href="/create_user" class="recuperar_senha">Registre-se</a>
+                <a href="/create_user" class="recuperar_senha">Registre-se</a> -->
             </div>
             <!-- <input type="username" name="username" placeholder="Insira um username"> -->
             <!-- <input type="password" name="password" placeholder="**********"> -->

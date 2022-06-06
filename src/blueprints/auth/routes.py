@@ -63,7 +63,6 @@ def login():
 
     return render_template('pages/auth/login.html')
 
-
 @auth.route('/create_user', methods=['GET', 'POST'])
 def create_user():
     """Register new user."""
@@ -74,8 +73,9 @@ def create_user():
             password = request.form.get('password')
             if not UserQuerys.get_by_email(email):
                 UserQuerys.create(name, email, password)
-
-    return redirect(url_for('auth.index'))
+            return redirect('/login')
+    return render_template('pages/auth/register.html')
+    # return redirect(url_for('auth.register'))
 
 @auth.route('/logout', methods=['GET', 'POST'])
 def logout():
