@@ -32,8 +32,9 @@ def check_valid_login():
 
     match rules:
         case True:
-            return render_template('pages/auth/login.html')
-
+            return redirect('/login')
+            # return render_template('pages/auth/register.html')
+        
 def public_endpoint(function):
     """Decoretor for public routes"""
     function.is_public = True
@@ -60,7 +61,6 @@ def login():
                     login_user(user)
                     return redirect('/')
                 
-
     return render_template('pages/auth/login.html')
 
 @auth.route('/create_user', methods=['GET', 'POST'])
