@@ -1,34 +1,12 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% macro _body() %}
+<div class="form-group">
+    <label for="exampleInputEmail1">Nome do cliente</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="Nome">
+</div>
 
-
-
-{% macro _body() %}
-      <div class="form-group">
-        <label for="exampleInputEmail1">Nome</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Ex: ...">
-      </div>
-{% endmacro %}
-
-
-{% macro mostrar() %}
+{% endmacro %} {% macro mostrar() %}
 <div class="col">
 
-    {{card_primary(
-
-        title="Novo Cliente", 
-
-        card_body=_body(),
-
-        card_footer=buttons(
-            button_type="submit",
-            _class="btn-default float-right",
-            button_text="Novo"),
-        is_form=True,
-        form_action=""
-        )}}
+    {{card_primary( title="Novo Cliente", card_body=_body(), card_footer=buttons( button_type="submit", _class="btn-default float-right", button_text="Adicinar"), is_form=True, form_action="" )}}
 </div>
-{% endmacro %}
-
-{% block content %}
-{{ wrapper_content(mostrar()) }}
-{% endblock %}
+{% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}
