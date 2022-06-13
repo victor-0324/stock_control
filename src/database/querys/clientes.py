@@ -10,6 +10,21 @@ class ClientesQuerys:
 
     @classmethod
     @db_connector
+    def add_cliente(cls,connection, nome, mac, data):
+        """someting"""
+        
+        cliente = Cliente(
+            nome=nome.upper(), 
+            estado="Ativo",
+            data=data,  
+            equipamento=mac
+        )
+
+        connection.session.add(cliente)
+        connection.session.commit()
+
+    @classmethod
+    @db_connector
     def criar_cliente(cls,connection, nome, data):
         """someting"""
         

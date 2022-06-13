@@ -6,6 +6,19 @@ from src.database.models import Equipamentos
 
 class EquipamentosQuerys:
     """Create a new user"""
+    @classmethod
+    @db_connector
+    def add_novo(cls, connection, modelo, nome, data):
+        """someting"""
+        criar_novo_equipamento = Equipamentos(
+            modelo=modelo.upper(), 
+            estado="Usando",
+            data=data,
+            cliente=nome 
+           
+        )
+        connection.session.add(criar_novo_equipamento)
+        connection.session.commit()
 
     @classmethod
     @db_connector

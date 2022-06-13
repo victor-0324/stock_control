@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% macro _body() %}
+<!-- <div class="form-group">
+    <label for="exampleInputBorder">Nome do cliente</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="Nome">
+</div> -->
+<div class="form-group">
+    <!-- <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label> -->
+    <input type="text" class="form-control form-control-border" name="name" id="exampleInputBorder" placeholder="Nome do cliente">
+</div>
+<div class="form-group">
+    <!-- <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label> -->
+    <input type="text" class="form-control form-control-border" name="name1" id="exampleInputBorder" placeholder="Mac do equipamento">
+</div>
+{% endmacro %} {% macro mostrar() %}
+<div class="col">
+
+    {{card_primary( title="Adicinar um cliente já instalado", card_body=_body(), card_footer=buttons( button_type="submit", _class="btn-default float-right", button_text="Adicinar"), is_form=True, form_action="" )}}
+</div>
+{% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

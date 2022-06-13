@@ -16,6 +16,21 @@ class OperacoesQuerys:
     def mostrar(cls, connection) -> List:
         con = connection.session.query(Operacoes)
         return con
+    
+    @classmethod
+    @db_connector
+    def add_novo(cls, connection, modelo, nome, data):
+        """someting"""
+        criar_novo_equipamento = Operacoes(
+            equipamento=modelo, 
+            operacao="Instalação",
+            data_hora=data,
+            cliente=nome,
+            observacao="Instalação feita manualmente pelo tecnico antes do app"
+           
+        )
+        connection.session.add(criar_novo_equipamento)
+        connection.session.commit()
 
     @classmethod
     @db_connector

@@ -7,6 +7,6 @@
 {% endmacro %} {% macro mostrar() %}
 <div class="col">
 
-    {{card_primary( title="Novo Cliente", card_body=_body(), card_footer=buttons( button_type="submit", _class="btn-default float-right", button_text="Adicinar"), is_form=True, form_action="" )}}
+    {{card_primary( title="Novo Cliente", card_body=_body(), card_footer=buttons( button_type="submit", _class="btn-default float-right", button_text="Adicionar"), is_form=True, form_action="" )}}
 </div>
 {% endmacro %} {% block content %} {{ wrapper_content(mostrar()) }} {% endblock %}

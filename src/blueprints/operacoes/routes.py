@@ -173,6 +173,19 @@ def instalar_novo_cliente():
 
     return render_template("/pages/cliente/novo.html")
 
+@operacoes_app.route("/add_novo", methods=["GET", "POST"])
+def add_novo():
+    """Cria um novo cliente"""
+    if request.method == "POST":
+        nome = request.form["name"]
+        mac = request.form['name1']
+        date_time = datetime.now().strftime("%d/%m/%Y")
+        ClientesQuerys.add_cliente(nome.upper(), mac.upper(), date_time)
+        EquipamentosQuerys.add_novo(mac.upper(), nome.upper(), date_time)
+        OperacoesQuerys.add_novo(mac.upper(), nome.upper(), date_time)
+        return redirect(url_for("operacoes_app.novo"))
+
+    return render_template("/pages/cliente/add_novo.html")
 @operacoes_app.route("/instalar/novo/equipamento", methods=["GET", "POST"])
 def instalar_novo_equipamento():
     """Cria um novo equipamento no sistema"""
