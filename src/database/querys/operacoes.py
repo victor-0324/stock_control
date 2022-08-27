@@ -34,12 +34,13 @@ class OperacoesQuerys:
 
     @classmethod
     @db_connector
-    def instalar(cls, connection, cliente, equipamento, data_hora, observacao):
+    def instalar(cls, connection, cliente, equipamento, data_hora, drop, observacao):
         """ Operação de instalação """
        
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento,
                             data_hora=data_hora,
+                            drop=drop+ ' ' + "Metros",
                             observacao=observacao,
                             operacao="Instalação")
         connection.session.add(operacao)
@@ -47,12 +48,13 @@ class OperacoesQuerys:
     
     @classmethod
     @db_connector
-    def retirar(cls, connection, cliente, equipamento, data_hora,observacao):
+    def retirar(cls, connection, cliente, equipamento, data_hora, observacao):
         """ Fazer operação de retirada """
        
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento,
                             data_hora=data_hora,
+                            drop="Nenhum drop usado",
                             observacao=observacao,
                             operacao="Retirada")
         connection.session.add(operacao)
@@ -66,6 +68,7 @@ class OperacoesQuerys:
         operacao = Operacoes(cliente=cliente,
                             equipamento=equipamento_trocado,
                             data_hora=data_hora,
+                            drop="Nenhum drop usado",
                             observacao=observacao,
                             operacao="Troca")
         connection.session.add(operacao)

@@ -22,8 +22,8 @@ login_manager.init_app(current_app)
 
 @current_app.before_request
 def check_valid_login():
-    """ Check if user have a valid login."""
-    login_valid = '_user_id' in session # or whatever you use to check valid login
+    """ Verifique se o usuário tem um login válido. """
+    login_valid = '_user_id' in session # ou o que você usa para verificar o login válido
     rules = (
         request.endpoint and
         'static' not in request.endpoint and
@@ -36,13 +36,13 @@ def check_valid_login():
             # return render_template('pages/auth/register.html')
         
 def public_endpoint(function):
-    """Decoretor for public routes"""
+    """ Decorador para vias públicas """
     function.is_public = True
     return function
 
 @login_manager.user_loader
 def load_user(user_id):
-    """Manage users in database."""
+    """Gerenciar usuários no banco de dados."""
     return UserQuerys.get_by_id(user_id)
 
 @auth.route('/login', methods=['GET', 'POST'])

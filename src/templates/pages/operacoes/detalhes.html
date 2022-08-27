@@ -12,7 +12,8 @@
 
             <h3 class="my-3">{{ operacoes.cliente }}</h3>
             <p>Data da {{ operacoes.operacao}}<br>{{ operacoes.data_hora }}</p>
-            <p>Descrição do equipamento <br>{{ operacoes.equipamento }}</p><br>
+            <p>Descrição do equipamento <br>{{ operacoes.equipamento }}</p>
+            <p>Fibra optica <br>{{ operacoes.drop }}</p>
             <p>Observação da {{ operacoes.operacao}}<br>{{operacoes.observacao}}</p>
             <a href="/operacoes/deletar/{{operacoes.id}}"><button type="button" class="btn btn-block btn-primary btn-sm">Apagar o peração</button></a>
 

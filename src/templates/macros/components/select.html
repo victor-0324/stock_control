@@ -1,7 +1,6 @@
 {% macro select(options, name) %}
-<select class="form-control select2" style="width: 100%;" name="{{ name }}">
+<select class="form-control select2" style="width: 100%;" name="{{ name }}" required>
 {% for item in options %}
   <option>{{ item }}</option>
 {% endfor %}
-</select>
-{% endmacro %}
+</select> {% endmacro %}

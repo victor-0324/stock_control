@@ -40,10 +40,12 @@ def instalar():
     """ Realiza a instalação de um equipamento """
     if request.method == "POST":
         cliente = request.form.get("cliente")
+        drop = request.form.get('drop')
+       
         equipamento = request.form.get("equipamento")
         observacao = request.form.get("obs")
         date_time = datetime.now().strftime("%d/%m/%Y  %H:%M")
-        OperacoesQuerys.instalar(cliente, equipamento, date_time, observacao)
+        OperacoesQuerys.instalar(cliente, equipamento, date_time, drop, observacao)
 
         imagem = request.files.get("imagem")
         operacao = OperacoesQuerys.mostrar()[-1]

@@ -14,6 +14,7 @@ equipamentos_app = Blueprint("equipamentos_app", __name__, url_prefix="/equipame
 @equipamentos_app.route("/", methods=["GET"])
 def mostrar():
     """Mostra todos os equipamentos"""
+    
     equipamentos = EquipamentosQuerys.mostrar().all()[::-1]
     return render_template(
         "/pages/equipamento/mostrar.html",
