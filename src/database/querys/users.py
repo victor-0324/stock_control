@@ -12,7 +12,7 @@ class UserQuerys:
     @classmethod
     @db_connector
     def get_by_id(cls, connection, user_id):
-        """ Obter um usuário por id. """
+        """Obter um usuário por id."""
         return connection.session.query(User).filter_by(id=int(user_id))
 
     @classmethod

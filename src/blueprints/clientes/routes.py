@@ -8,13 +8,15 @@ import os
 
 clientes_app = Blueprint("clientes_app", __name__, url_prefix="/cliente")
 
+
 @clientes_app.route("/", methods=["GET"])
 def mostrar_cliente():
     clientes = ClientesQuerys.mostrar().all()[::-1]
     return render_template(
-        "/pages/cliente/mostrar.html", 
-        clientes=clientes, 
+        "/pages/cliente/mostrar.html",
+        clientes=clientes,
     )
+
 
 @clientes_app.route("/novo", methods=["GET", "POST"])
 def novo():
@@ -25,11 +27,13 @@ def novo():
         return redirect(url_for("clientes_app.mostrar_cliente"))
     return render_template("/pages/cliente/novo.html")
 
+
 @clientes_app.route("/editar/<int:id_cliente>", methods=["GET", "POST"])
 def editar(id_cliente):
     cliente = ClientesQuerys.ver_cliente_id(id_cliente)
     image = os.path.join("/media/equipamentos/", cliente.nome + ".jpeg")
     return render_template("/pages/cliente/editar.html", cliente=cliente, image=image)
+
 
 @clientes_app.route("/deletar/<int:id_cliente>", methods=["GET", "POST"])
 def deletar(id_cliente):

@@ -14,12 +14,13 @@ equipamentos_app = Blueprint("equipamentos_app", __name__, url_prefix="/equipame
 @equipamentos_app.route("/", methods=["GET"])
 def mostrar():
     """Mostra todos os equipamentos"""
-    
+
     equipamentos = EquipamentosQuerys.mostrar().all()[::-1]
     return render_template(
         "/pages/equipamento/mostrar.html",
         equipamentos=equipamentos,
     )
+
 
 @equipamentos_app.route("/novo", methods=["GET", "POST"])
 def novo():
@@ -31,10 +32,12 @@ def novo():
         return redirect(url_for("equipamentos_app.mostrar"))
     return render_template("/pages/equipamento/novo.html")
 
+
 @equipamentos_app.route("/editar/<int:id_equipamento>", methods=["GET", "POST"])
 def editar(id_equipamento):
     """Edita as caracteristicas de um equipamento"""
     return render_template("/pages/equipamento/editar.html")
+
 
 @equipamentos_app.route("/deletar/<int:id_equipamento>", methods=["GET", "POST"])
 def deletar(id_equipamento):
