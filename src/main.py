@@ -20,9 +20,9 @@ def init_app():
     with app.app_context():
 
         # Aplicativo de autenticação
-        # from .blueprints import auth
+        from .blueprints import auth
 
-        # app.register_blueprint(auth)
+        app.register_blueprint(auth)
 
         # Aplicativo inicial
         from .blueprints import initial_app

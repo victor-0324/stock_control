@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable,  disable=unused-import, pylint(import-error)
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable,  disable=unused-import, pylint(import-error), pylint(missing-function-docstring)
 
 """ Aplicação de Controle de estoque """
 
@@ -18,10 +18,7 @@ def mostrar():
     total_clientes = len(clientes)
     operacoes = OperacoesQuerys.mostrar().all()[::-1]
     total_operacoes = len(operacoes)
-    # if not g.user:
-    #     # abort(403)
 
-    #     return redirect(url_for("auth_app.login"))
     return render_template(
         "/pages/initial/index.html",
         total=total,

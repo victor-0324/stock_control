@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, no-member, arguments-differ, undefined-variable
+# pylint: disable=unused-argument, no-member, arguments-differ, undefined-variable, pylint(unused-import)
 
 from src.database.config import DBConnectionHendler, db_connector
 from src.database.models import Equipamentos

@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable
+# pylint: disable=unused-argument, no-member, arguments-differ, no-value-for-parameter, unreachable,pylint(import-error)
 
 
 """ Aplicação de Controle de estoque """
@@ -15,7 +15,7 @@ equipamentos_app = Blueprint("equipamentos_app", __name__, url_prefix="/equipame
 def mostrar():
     """Mostra todos os equipamentos"""
 
-    equipamentos = EquipamentosQuerys.mostrar().all()[::-1]
+    equipamentos = EquipamentosQuerys.mostrar()
     return render_template(
         "/pages/equipamento/mostrar.html",
         equipamentos=equipamentos,

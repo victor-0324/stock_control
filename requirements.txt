@@ -34,6 +34,8 @@ Mako==1.1.3
 MarkupSafe==2.1.1
 mccabe==0.7.0
 monotonic==1.5
+mysql-connector-python==8.0.31
+mysqlclient==1.4.4
 numpy==1.19.5
 oauthlib==3.1.0
 olefile==0.46
@@ -41,6 +43,7 @@ paramiko==2.7.2
 pexpect==4.8.0
 Pillow==8.1.2
 platformdirs==2.6.0
+protobuf==3.20.1
 psutil==5.8.0
 pycairo==1.16.2
 pycups==2.0.1
@@ -71,7 +74,7 @@ tinycss==0.4
 tinycss2==1.0.2
 tomli==2.0.1
 tomlkit==0.11.6
-typing-extensions==4.4.0
+typing_extensions==4.4.0
 unattended-upgrades==0.1
 urllib3==1.26.5
 webencodings==0.5.1

@@ -1,4 +1,4 @@
-#!/home/vitor/Documentos/stock_control/venv/bin/python3
+#!/home/vitor/Documentos/stock_control/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

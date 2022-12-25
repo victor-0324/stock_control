@@ -1,4 +1,4 @@
-# pylint: disable=no-value-for-parameter, pylint(import-error), pylint(trailing-whitespace)
+# pylint: disable=no-value-for-parameter, pylint(import-error), pylint(trailing-whitespace), pylint(unused-import)
 """Routes for user authentication."""
 
 from flask import (Blueprint, current_app, redirect, render_template, request,
