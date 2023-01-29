@@ -33,7 +33,9 @@ def check_valid_login():
     match rules:
         case True:
             return redirect('/login')
-            # return render_template('pages/auth/register.html')
+
+        # case False:
+        #     return render_template('pages/auth/register.html')
         
 def public_endpoint(function):
     """ Decorador para vias públicas """
@@ -60,6 +62,12 @@ def login():
                 case [User(email), True]:
                     login_user(user)
                     return redirect('/')
+
+                case [User(email), False]:
+                    login_user(user)
+                    return redirect('/login')
+            
+           
                 
     return render_template('pages/auth/login.html')
 
